@@ -54,7 +54,7 @@ export default function FeedbackPage() {
               </label>
 
               <textarea
-                placeholder="How can we make Chronicle AI better for you?"
+                placeholder="How can we make AI Journalist better for you?"
                 className="h-32 w-full resize-none border border-neutral-400 bg-transparent p-4 outline-none transition focus:border-black"
               />
             </div>
