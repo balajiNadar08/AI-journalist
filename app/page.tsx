@@ -144,7 +144,7 @@ export default function Home() {
 
       <section className="w-full bg-white text-black px-6 py-28 border">
         <div className="max-w-7xl mx-auto">
-          <BlurFade delay={0.1} inView>
+          <BlurFade delay={0.25} inView>
             <div className="text-center mb-24">
               <h2
                 className={`text-5xl md:text-6xl ${playfair.className} font-bold`}
@@ -173,7 +173,7 @@ export default function Home() {
                 >
                   <source src="/quick-mode.mp4" type="video/mp4" />
                 </video>
-              </div>
+              </div> 
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
