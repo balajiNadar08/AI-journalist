@@ -55,7 +55,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full min-h-screen px-6 py-24 border">
+      <section className="w-full min-h-screen  px-6 py-24 border">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className=" p-10 md:p-14 h-125 flex flex-col justify-center">
             <BlurFade delay={0.25} inView>
