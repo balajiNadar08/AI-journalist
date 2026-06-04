@@ -1,5 +1,6 @@
 import { Playfair_Display, Lato } from "next/font/google";
 import { BlurFade } from "@/components/ui/blur-fade";
+import { Marquee, ReviewCard } from "@/components/ui/marquee";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -12,6 +13,45 @@ const lato = Lato({
   weight: ["300", "400", "700", "900"],
   variable: "--font-lato",
 });
+
+const reviews = [
+  {
+    name: "Jack",
+    username: "@jack",
+    body: "I've never seen anything like this before. It's amazing. I love it.",
+    img: "https://avatar.vercel.sh/jack",
+  },
+  {
+    name: "Jill",
+    username: "@jill",
+    body: "I don't know what to say. I'm speechless. This is amazing.",
+    img: "https://avatar.vercel.sh/jill",
+  },
+  {
+    name: "John",
+    username: "@john",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/john",
+  },
+  {
+    name: "Jane",
+    username: "@jane",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/jane",
+  },
+  {
+    name: "Jenny",
+    username: "@jenny",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/jenny",
+  },
+  {
+    name: "James",
+    username: "@james",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/james",
+  },
+];
 
 export default function Home() {
   return (
@@ -102,76 +142,153 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full px-6 py-28 bg-white text-black border">
-        <div className="max-w-7xl mx-auto border border-white/20 p-10 md:p-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              {
-                title: "Quicky Mode",
-                desc: "Short bullet-point summaries for users in a hurry. Get the facts without the fluff instantly",
-              },
-              {
-                title: "Source Links",
-                desc: "Direct links to original articles for full reading. Verify the facts and dive deep into original reporting.",
-              },
-              {
-                title: "Personalized Categories",
-                desc: "Combine multiple categories in one click. Tailor your morning briefing to exactly what matters to you.",
-              },
-            ].map((item, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <BlurFade delay={0.25} inView className="w-full">
-                  <div className="w-full h-64 bg-[#ffbf2f] flex items-center justify-center rounded-2xl">
-                    <p className="text-white text-xs tracking-[0.3em] uppercase">
-                      ASCII
-                    </p>
-                  </div>
-                </BlurFade>
+      <section className="w-full bg-white text-black px-6 py-28 border">
+        <div className="max-w-7xl mx-auto">
+          <BlurFade delay={0.25} inView>
+            <div className="text-center mb-24">
+              <h2
+                className={`text-5xl md:text-6xl ${playfair.className} font-bold`}
+              >
+                News that respects your time
+              </h2>
 
-                <BlurFade delay={0.25 * 2} inView>
-                  <div className="mt-12 w-[90%] h-60 border-2 border-black/70 px-8 py-10 flex flex-col items-center text-center rounded-2xl hover:border-[#ffbf2f] transition-all duration-300 ">
-                    <h3 className="text-2xl font-semibold mb-4">
-                      {item.title}
-                    </h3>
+              <p
+                className={`max-w-2xl ${lato.className} mx-auto mt-6 text-black/60`}
+              >
+                Read less, understand more. Get concise summaries, personalized
+                coverage, and instant insights from the stories that matter.
+              </p>
+            </div>
+          </BlurFade>
 
-                    <p className="text-black/60 leading-relaxed text-sm">
-                      {item.desc}
-                    </p>
-                  </div>
-                </BlurFade>
+          <div className="grid md:grid-cols-[1fr_1.8fr] gap-6 mb-6">
+            <BlurFade delay={0.15} inView>
+              <div className="h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover rounded-2xl"
+                >
+                  <source src="/quick-mode.mp4" type="video/mp4" />
+                </video>
+              </div> 
+            </BlurFade>
+
+            <BlurFade delay={0.2} inView>
+              <div className="h-80 rounded-3xl border-2 border-black/90 p-10 md:p-14 flex flex-col justify-center">
+                <h3 className={`text-4xl font-bold ${playfair.className} mb-6`}>
+                  Quicky Mode
+                </h3>
+
+                <p
+                  className={`text-black/60 ${lato.className} leading-relaxed max-w-xl`}
+                >
+                  Short bullet-point summaries for users in a hurry. Get the
+                  facts without the fluff and stay informed in seconds.
+                </p>
               </div>
-            ))}
+            </BlurFade>
+          </div>
+
+          <div className="grid md:grid-cols-[1.8fr_1fr] gap-6">
+            <BlurFade delay={0.25} inView>
+              <div className="h-80 rounded-3xl border-2 border-black/90 p-10 md:p-14 flex flex-col justify-center">
+                <h3 className={`text-4xl font-bold ${playfair.className} mb-6`}>
+                  Source Links
+                </h3>
+
+                <p
+                  className={`text-black/60 ${lato.className} leading-relaxed max-w-xl`}
+                >
+                  Direct links to original articles for full reading. Verify
+                  facts, explore different viewpoints, and dive deeper whenever
+                  you want.
+                </p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.3} inView>
+              <div className="h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover rounded-2xl"
+                >
+                  <source src="/source-links.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </BlurFade>
+          </div>
+
+          <div className="grid md:grid-cols-[1fr_1.8fr] gap-6 mt-6">
+            <BlurFade delay={0.35} inView>
+              <div className="h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover rounded-2xl"
+                >
+                  <source src="/personalized.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.4} inView>
+              <div className="h-80 rounded-3xl border-2 border-black/90 p-10 md:p-14 flex flex-col justify-center">
+                <h3 className={`text-4xl font-bold ${playfair.className} mb-6`}>
+                  Personalized Categories
+                </h3>
+
+                <p
+                  className={`text-black/60 ${lato.className} leading-relaxed max-w-xl`}
+                >
+                  Combine multiple categories in one click and create a news
+                  feed tailored to your interests. Technology, business, sports,
+                  politics — all in one place.
+                </p>
+              </div>
+            </BlurFade>
           </div>
         </div>
       </section>
 
-      <section className="w-full px-6 py-24 border border-black">
-        <div className="max-w-7xl mx-auto border border-black rounded-2xl p-6 md:p-10">
-          <div className="min-h-105 flex flex-col items-center justify-center px-8 text-center">
-            <h2
-              className={`${playfair.className} text-4xl md:text-6xl font-semibold leading-tight`}
-            >
-              Built for Modern Readers
-            </h2>
+      <section className="w-full px-6 pt-24 pb-40 border border-black">
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+          <h2
+            className={`${playfair.className} text-4xl px-20 pb-6 font-semibold tracking-tight md:text-5xl`}
+          >
+            What Readers Think About AI Journalist
+          </h2>
 
-            <p
-              className={`${lato.className} mt-8 max-w-3xl text-black/70 text-lg leading-relaxed`}
-            >
-              AI Journalist transforms long, cluttered news articles into
-              concise, meaningful summaries powered by AI. Instead of spending
-              hours scrolling through headlines, readers can instantly
-              understand what matters most in technology, business, sports,
-              startups, AI and more.
-            </p>
+          <p
+            className={`${lato.className} mt-4 text-lg text-muted-foreground md:text-xl`}
+          >
+            Join readers who are transforming the way they consume news with
+            faster insights, smarter summaries, and zero information overload.
+          </p>
+        </div>
 
-            <p
-              className={`${lato.className} mt-5 max-w-2xl text-black/50 leading-relaxed`}
-            >
-              Designed with a clean and distraction-free experience, the
-              platform removes clickbait, unnecessary ads and information
-              overload helping users stay informed faster and smarter every day.
-            </p>
-          </div>
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+          <Marquee pauseOnHover className="[--duration:20s]">
+            {reviews.map((review) => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+
+          <Marquee reverse pauseOnHover className="[--duration:20s]">
+            {reviews.map((review) => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+
+          <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r" />
+          <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l" />
         </div>
       </section>
     </main>
