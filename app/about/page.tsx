@@ -20,6 +20,7 @@ export default function AboutPage() {
    },
  ];
 
+
  return (
    <main className="min-h-screen bg-[#f5f4f2] text-black">
      {/* HERO */}
@@ -27,9 +28,8 @@ export default function AboutPage() {
        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-20 px-10 py-20">
          {/* Left */}
          <div>
-           <div className="mb-8 inline-block border border-neutral-400 px-3 py-1 text-[10px] uppercase tracking-[0.3em]">
-             Manifesto v1.0.4
-           </div>
+           
+
 
            <h1
              className="mb-8 text-7xl leading-none"
@@ -38,35 +38,23 @@ export default function AboutPage() {
              About AI Journalist
            </h1>
 
+
            <p className="max-w-xl text-lg leading-9 text-neutral-700">
-             We are a computational news laboratory dedicated to the pursuit
-             of objective truth through algorithmic transparency and rigorous
-             data verification. Our platform synthesizes global signals into
-             clear, actionable intelligence.
+             We built AI Journalist because the modern news experience is broken.
+             Every day, people spend hours navigating headlines, clickbait, advertisements, opinions, and algorithmic noise just to understand what is happening in the world.
+             Important information is buried beneath endless scrolling.
+             AI Journalist was created to reverse that process. We collect signals from trusted sources, analyze them using artificial intelligence, and transform them into concise, readable briefings so readers can understand more in minutes instead of hours.
            </p>
+
 
            <div className="mt-12 flex gap-12">
              <div className="border-l border-neutral-400 pl-4">
-               <div className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-                 Status
-               </div>
-
-               <div className="mt-1 text-sm uppercase tracking-wide">
-                 Operational
-               </div>
              </div>
-
-             <div className="border-l border-neutral-400 pl-4">
-               <div className="text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-                 Signal
-               </div>
-
-               <div className="mt-1 text-sm uppercase tracking-wide">
-                 Unfiltered
-               </div>
+             <div className="border-l border-neutral-400 pl-4"> 
              </div>
            </div>
          </div>
+
 
          {/* Right Image */}
          <div>
@@ -77,19 +65,20 @@ export default function AboutPage() {
              className="h-[520px] w-full object-cover grayscale"
              />
 
+
             
            </div>
          </div>
        </div>
      </section>
 
+
      {/* WHY WE EXIST */}
      <section className="border-b border-neutral-300">
        <div className="mx-auto grid max-w-7xl grid-cols-2">
          <div className="border-r border-neutral-300 p-10">
-           <div className="mb-8 text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-             00 / Genesis
-           </div>
+           
+
 
            <h2
              className="mb-8 text-5xl"
@@ -98,12 +87,15 @@ export default function AboutPage() {
              Why We Exist
            </h2>
 
+
            <div className="space-y-6 text-neutral-700">
              <p className="leading-8">
-               The modern information landscape is fractured by noise, bias,
-               and institutional decay. Traditional journalism often fails to
-               keep pace with the velocity of digital change.
+               The internet produces more information in a single day than most people can consume in a lifetime.
+               News no longer arrives as a clear story. It arrives fragmented across websites, social platforms, newsletters, videos, and feeds competing for attention.
+               We believe the challenge is no longer access to right information. The challenge is finding clarity.
+               AI Journalist exists to filter noise, surface what matters, and help readers stay informed without sacrificing their time.
              </p>
+
 
              <p className="leading-8">
                AI Journalist was founded to bridge this gap. By leveraging
@@ -114,17 +106,20 @@ export default function AboutPage() {
            </div>
          </div>
 
+
          {/* Newspaper ASCII Panel */}
          <div className="flex items-center justify-center p-10">
-           <div className="w-full bg-black p-8 font-mono text-xs text-white">
+           <div className="w-full bg-black p-8 font-mono text-xs text-green-400">
              <pre>{`
 AI JOURNALIST // CORE ENGINE
+
 
 [✓] SIGNAL PROCESSING
 [✓] SOURCE VERIFICATION
 [✓] FACT EXTRACTION
 [✓] BIAS REDUCTION
 [✓] REAL-TIME ANALYSIS
+
 
 STATUS: OPERATIONAL
 VERSION: 4.0.2
@@ -134,14 +129,14 @@ VERSION: 4.0.2
        </div>
      </section>
 
+
      {/* CORE AXIOMS */}
      <section className="px-10 py-20">
        <div className="mx-auto max-w-7xl">
          <div className="mb-12 flex items-center justify-between">
            <div>
-             <div className="mb-4 text-[10px] uppercase tracking-[0.3em] text-neutral-500">
-               01 / Principles
-             </div>
+             
+
 
              <h2
                className="text-5xl"
@@ -151,8 +146,10 @@ VERSION: 4.0.2
              </h2>
            </div>
 
+
           
          </div>
+
 
          <div className="grid grid-cols-3 border border-neutral-300">
            {axioms.map((axiom) => (
@@ -164,12 +161,14 @@ VERSION: 4.0.2
                  {axiom.number}
                </div>
 
+
                <h3
                  className="mb-6 text-3xl"
                  style={{ fontFamily: "Georgia, serif" }}
                >
                  {axiom.title}
                </h3>
+
 
                <p className="leading-8 text-neutral-700">
                  {axiom.description}
@@ -179,6 +178,7 @@ VERSION: 4.0.2
          </div>
        </div>
      </section>
+
 
      {/* MISSION + VISION */}
      <section className="border-t border-neutral-300">
@@ -191,18 +191,18 @@ VERSION: 4.0.2
              The Mission
            </h2>
 
+
            <p className="max-w-lg text-lg leading-9 text-neutral-700">
-             To build the world's first autonomous, ethical newsroom —
-             empowering citizens with the unvarnished data they need to
-             navigate a complex global reality.
+             To create the world's most accessible intelligence layer for everyday news.
+             Our mission is to help people make better decisions by transforming overwhelming streams of information into clear, structured knowledge.
            </p>
 
-           <button className="mt-12 border border-neutral-400 px-8 py-4 text-xs uppercase tracking-[0.3em]">
-             Read The White Paper
-           </button>
+
+           
          </div>
 
-         <div className="bg-red-500/90 p-16 text-white">
+
+         <div className="bg-black p-16 text-white">
            <h2
              className="mb-8 text-7xl"
              style={{ fontFamily: "Georgia, serif" }}
@@ -210,10 +210,10 @@ VERSION: 4.0.2
              The Vision
            </h2>
 
+
            <p className="max-w-lg text-lg leading-9 text-neutral-300">
-             A future where information is a public utility: clean,
-             unbiased, and universally accessible. We envision a society
-             informed by logic and shared reality.
+             A future where anyone can understand the world's most important events without being overwhelmed by information overload.
+             We envision a world where knowledge is organized, accessible, unbiased, and available to everyone regardless of time, background, or expertise.
            </p>
          </div>
        </div>
