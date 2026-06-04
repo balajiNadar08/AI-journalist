@@ -25,9 +25,7 @@ export default function FeaturesPage() {
   return (
     <section className="w-full bg-[#f4f3f1] py-20">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Header */}
         <div className="mb-20">
-
           <h2
             className="mb-2 text-[64px] leading-none font-semibold tracking-[-0.04em]"
             style={{ fontFamily: "Georgia, serif" }}
@@ -36,23 +34,21 @@ export default function FeaturesPage() {
           </h2>
 
           <p
-            className="max-w-[900px] text-[20px] leading-[1.8] text-neutral-800"
+            className="max-w-225 text-[20px] leading-[1.8] text-neutral-800"
             style={{ fontFamily: "Georgia, serif" }}
           >
-            Select categories, get summarized news from multiple sources,
-            and read deeper through direct source links.
+            Select categories, get summarized news from multiple sources, and
+            read deeper through direct source links.
           </p>
         </div>
 
-        {/* Divider */}
         <div className="mb-20 border-t border-neutral-500" />
 
-        {/* Cards */}
         <div className="grid grid-cols-4 gap-8">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="flex h-[500px] flex-col border border-neutral-500 bg-transparent p-8"
+              className="flex h-125 flex-col border border-neutral-500 bg-transparent p-8"
             >
               <h3
                 className="text-[36px] leading-[1.15] font-semibold"
