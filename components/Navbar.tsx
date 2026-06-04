@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`w-full ${lato.className} border-b border-white bg-black backdrop-blur-md`}
+      className={`w-full ${lato.className} bg-black backdrop-blur-md`}
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="relative flex h-20 items-center">
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
 
           <div className="ml-auto hidden md:flex items-center">
             <Link href="/auth/login">
-              <button className="px-5 py-2 text-[15px]  tracking-[0.2px] text-white border border-white rounded-md cursor-pointer hover:bg-black hover:text-white transition-all duration-200">
+              <button className="px-5 py-2 text-[15px]  tracking-[0.2px] text-white border border-white rounded-md cursor-pointer hover:bg-white hover:text-black transition-all duration-200">
                 Login
               </button>
             </Link>

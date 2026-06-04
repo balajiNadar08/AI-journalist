@@ -3,7 +3,6 @@ export default function FeedbackPage() {
     <section className="w-full bg-[#f4f3f1] py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid border border-neutral-400 md:grid-cols-2">
-          {/* Left Side */}
           <div
             className="flex flex-col justify-center border-b border-neutral-400 p-10 md:border-b-0 md:border-r"
             style={{
@@ -32,7 +31,6 @@ export default function FeedbackPage() {
             </p>
           </div>
 
-          {/* Right Side */}
           <div className="p-10">
             <div className="mb-8">
               <p className="mb-4 text-xs uppercase tracking-[0.3em] text-neutral-600">
