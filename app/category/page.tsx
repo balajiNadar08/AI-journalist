@@ -99,32 +99,55 @@ if (!user) {
   return;
 }
 
-const { data: categoryRows } = await supabase
-  .from("categories")
-  .select("*");
+const { data: categoryRows, error: categoryError } =
+  await supabase
+    .from("categories")
+    .select("*");
+
+console.log("CATEGORY ROWS:", categoryRows);
+console.log("CATEGORY ERROR:", categoryError);
 
 const selectedIds =
   categoryRows
-    ?.filter((c) => selected.includes(c.name))
+    ?.filter((c) =>
+      selected.includes(
+        String(c.name).toUpperCase()
+      )
+    )
     .map((c) => ({
       user_id: user.id,
-      category_id: c.id,
+      category_id:
+        c.id ?? c.category_id,
     })) || [];
 
-await supabase
-  .from("user_interests")
-  .delete()
-  .eq("user_id", user.id);
+console.log("SELECTED:", selected);
+console.log("SELECTED IDS:", selectedIds);
 
-const { error } = await supabase
-  .from("user_interests")
-  .insert(selectedIds);
+const { error: deleteError } =
+  await supabase
+    .from("user_interests")
+    .delete()
+    .eq("user_id", user.id);
 
-if (error) {
-  alert(error.message);
+console.log("DELETE ERROR:", deleteError);
+
+const {
+  data: insertedData,
+  error: insertError,
+} = await supabase
+  .from("user_interests")
+  .insert(selectedIds)
+  .select();
+
+console.log("INSERTED DATA:", insertedData);
+console.log("INSERT ERROR:", insertError);
+
+if (insertError) {
+  alert(insertError.message);
   setLoading(false);
   return;
 }
+
 
 router.push("/news");
 
