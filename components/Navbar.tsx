@@ -44,13 +44,6 @@ const Navbar: React.FC = () => {
               </Link>
 
               <Link
-                href="/"
-                className="text-white border-b-2 border-transparent hover:border-white transition-all duration-200"
-              >
-                Features
-              </Link>
-
-              <Link
                 href="/feedback"
                 className="text-white border-b-2 border-transparent hover:border-white transition-all duration-200"
               >

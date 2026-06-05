@@ -4,13 +4,13 @@ export default function AboutPage() {
      number: "01",
      title: "Clarity",
      description:
-       "Complexity is often a shroud for inaccuracy. We strip away the fluff to present the core facts of every story rendered in high-definition precision.",
+       " We transform complex stories into concise, readable briefings that highlight the key facts, context, and developments without overwhelming readers with unnecessary detail.",
    },
    {
      number: "02",
      title: "Trust",
      description:
-       "Trust is earned through transparency. Every claim made by AI Journalist is backed by traceable, immutable data sources and verification logs.",
+       "Every claim made by AI Journalist is backed by traceable, immutable data sources and verification logs.",
    },
    {
      number: "03",
@@ -40,10 +40,8 @@ export default function AboutPage() {
 
 
            <p className="max-w-xl text-lg leading-9 text-neutral-700">
-             We built AI Journalist because the modern news experience is broken.
-             Every day, people spend hours navigating headlines, clickbait, advertisements, opinions, and algorithmic noise just to understand what is happening in the world.
-             Important information is buried beneath endless scrolling.
-             AI Journalist was created to reverse that process. We collect signals from trusted sources, analyze them using artificial intelligence, and transform them into concise, readable briefings so readers can understand more in minutes instead of hours.
+            AI Journalist is a personalized AI-powered news platform built for readers who value clarity over noise.
+            Instead of spending hours browsing multiple websites, users can select the topics they care about and receive concise, source-backed summaries in seconds. Our goal is simple: help people stay informed without information overload.
            </p>
 
 
@@ -77,9 +75,6 @@ export default function AboutPage() {
      <section className="border-b border-neutral-300">
        <div className="mx-auto grid max-w-7xl grid-cols-2">
          <div className="border-r border-neutral-300 p-10">
-           
-
-
            <h2
              className="mb-8 text-5xl"
              style={{ fontFamily: "Georgia, serif" }}
@@ -90,19 +85,12 @@ export default function AboutPage() {
 
            <div className="space-y-6 text-neutral-700">
              <p className="leading-8">
-               The internet produces more information in a single day than most people can consume in a lifetime.
-               News no longer arrives as a clear story. It arrives fragmented across websites, social platforms, newsletters, videos, and feeds competing for attention.
-               We believe the challenge is no longer access to right information. The challenge is finding clarity.
-               AI Journalist exists to filter noise, surface what matters, and help readers stay informed without sacrificing their time.
+               The modern news landscape is fragmented. Important stories are scattered across websites, social platforms, newsletters, and feeds competing for attention.
+               AI Journalist was created to bring those signals together, filter out unnecessary noise, and deliver the information that truly matters.
              </p>
 
 
-             <p className="leading-8">
-               AI Journalist was founded to bridge this gap. By leveraging
-               neural networks and decentralized data verification, we provide
-               a definitive record of events that is immune to emotional
-               distortion and corporate influence.
-             </p>
+             
            </div>
          </div>
 
@@ -193,8 +181,7 @@ VERSION: 4.0.2
 
 
            <p className="max-w-lg text-lg leading-9 text-neutral-700">
-             To create the world's most accessible intelligence layer for everyday news.
-             Our mission is to help people make better decisions by transforming overwhelming streams of information into clear, structured knowledge.
+             To make quality information accessible through intelligent summarization, helping people understand important events faster and make better-informed decisions every day.
            </p>
 
 
@@ -212,7 +199,6 @@ VERSION: 4.0.2
 
 
            <p className="max-w-lg text-lg leading-9 text-neutral-300">
-             A future where anyone can understand the world's most important events without being overwhelmed by information overload.
              We envision a world where knowledge is organized, accessible, unbiased, and available to everyone regardless of time, background, or expertise.
            </p>
          </div>
