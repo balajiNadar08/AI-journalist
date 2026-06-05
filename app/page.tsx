@@ -1,6 +1,7 @@
 import { Playfair_Display, Lato } from "next/font/google";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee, ReviewCard } from "@/components/ui/marquee";
+import Link from "next/link";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -86,16 +87,18 @@ export default function Home() {
           </BlurFade>
 
           <BlurFade delay={0.75}>
-            <button
-              className={`${lato.className} rounded-full mt-8 border border-white text-white px-10 py-3 text-md font-bold uppercase tracking-widest cursor-pointer hover:bg-white hover:text-black transition-all duration-300`}
-            >
-              Try Now
-            </button>
+      <Link href="/auth/login">
+       <button
+        className={`${lato.className} rounded-full mt-8 border border-white text-white px-10 py-3 text-md font-bold uppercase tracking-widest cursor-pointer hover:bg-white hover:text-black transition-all duration-300`}
+      >
+      Try Now
+       </button>
+      </Link>
           </BlurFade>
         </div>
       </section>
 
-      <section className="w-full min-h-screen  px-6 py-24 border">
+      <section className="w-full min-h-screen bg-[#f4f3f1] px-6 py-24 border">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className=" p-10 md:p-14 h-125 flex flex-col justify-center">
             <BlurFade delay={0.25} inView>
@@ -142,7 +145,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-white text-black px-6 py-28 border">
+      <section className="w-full bg-[#f4f3f1] px-6 py-28 border">
         <div className="max-w-7xl mx-auto">
           <BlurFade delay={0.25} inView>
             <div className="text-center mb-24">
@@ -258,7 +261,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full px-6 pt-24 pb-40 border border-black">
+      <section className="w-full px-6 pt-24 pb-40 bg-[#f4f3f1] border border-black">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2
             className={`${playfair.className} text-4xl px-20 pb-6 font-semibold tracking-tight md:text-5xl`}
