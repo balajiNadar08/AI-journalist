@@ -77,7 +77,7 @@ export default function FeedbackPage() {
 
             <div className="p-10 lg:p-16">
               <form
-                action="https://formspree.io/f/YOUR_FORM_ID"
+                action="https://formspree.io/f/mdavkjad"
                 method="POST"
                 className="space-y-7"
               >
