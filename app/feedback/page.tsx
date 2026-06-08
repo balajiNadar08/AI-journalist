@@ -26,40 +26,43 @@ export default function FeedbackPage() {
   const [rating, setRating] = useState(0);
 
   return (
-    <section className={`w-full bg-[#f4f3f1] py-20 ${lato.className}`}>
-      <div className="mx-auto max-w-7xl px-6">
+    <section
+      className={`w-full bg-[#f4f3f1] py-12 sm:py-16 lg:py-20 ${lato.className}`}
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="overflow-hidden border border-neutral-400 bg-white">
-          <div className="grid md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             <div
-              className="flex flex-col justify-center border-b border-neutral-400 p-10 md:border-b-0 md:border-r lg:p-16"
+              className="flex flex-col justify-center border-b border-neutral-400 p-6 sm:p-8 lg:p-16 md:border-b-0 md:border-r"
               style={{
                 backgroundImage:
                   "radial-gradient(#d8d8d8 0.8px, transparent 0.8px)",
                 backgroundSize: "10px 10px",
               }}
             >
-              <p className="mb-4 text-xs uppercase tracking-[0.3em] text-neutral-500">
+              <p className="mb-4 text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-500">
                 We Value Your Input
               </p>
 
               <h1
-                className={`${playfair.className} mb-6 text-5xl font-semibold leading-tight lg:text-6xl`}
+                className={`${playfair.className} mb-6 text-3xl sm:text-4xl lg:text-6xl font-semibold leading-tight`}
               >
                 Help Shape the Future of AI Journalist
               </h1>
 
-              <p className="max-w-lg text-lg leading-8 text-neutral-700">
+              <p className="max-w-lg text-base sm:text-lg leading-7 sm:leading-8 text-neutral-700">
                 Whether you've found a bug, have an idea for a feature, want to
-                discuss a partnership or simply want to share your
-                thoughts, we'd love to hear from you.
+                discuss a partnership or simply want to share your thoughts,
+                we'd love to hear from you.
               </p>
 
-              <div className="mt-12 space-y-6">
+              <div className="mt-8 sm:mt-12 space-y-6">
                 <div>
-                  <h3 className="mb-2 text-sm font-semibold uppercase tracking-[0.2em]">
+                  <h3 className="mb-2 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em]">
                     What happens next?
                   </h3>
-                  <p className="text-neutral-600">
+
+                  <p className="text-sm sm:text-base text-neutral-600">
                     Every submission is reviewed by our team and helps us
                     improve the experience for all users.
                   </p>
@@ -67,22 +70,23 @@ export default function FeedbackPage() {
 
                 <div className="border-t border-neutral-300 pt-6">
                   <p
-                    className={`${playfair.className} italic text-neutral-500`}
+                    className={`${playfair.className} italic text-sm sm:text-base text-neutral-500`}
                   >
-                    "The best products are built together in collaboration with users."
+                    "The best products are built together in collaboration with
+                    users."
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="p-10 lg:p-16">
+            <div className="p-6 sm:p-8 lg:p-16">
               <form
                 action="https://formspree.io/f/mdavkjad"
                 method="POST"
-                className="space-y-7"
+                className="space-y-6 sm:space-y-7"
               >
                 <div>
-                  <label className="mb-2 block text-xs uppercase tracking-[0.3em] text-neutral-600">
+                  <label className="mb-2 block text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-600">
                     Name
                   </label>
 
@@ -90,12 +94,12 @@ export default function FeedbackPage() {
                     type="text"
                     name="name"
                     placeholder="John Doe"
-                    className="w-full border border-neutral-400 bg-transparent p-4 outline-none transition focus:border-black"
+                    className="w-full border border-neutral-400 bg-transparent p-3 sm:p-4 text-sm sm:text-base outline-none transition focus:border-black"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-xs uppercase tracking-[0.3em] text-neutral-600">
+                  <label className="mb-2 block text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-600">
                     Email
                   </label>
 
@@ -103,19 +107,19 @@ export default function FeedbackPage() {
                     type="email"
                     name="email"
                     placeholder="john@example.com"
-                    className="w-full border border-neutral-400 bg-transparent p-4 outline-none transition focus:border-black"
+                    className="w-full border border-neutral-400 bg-transparent p-3 sm:p-4 text-sm sm:text-base outline-none transition focus:border-black"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-xs uppercase tracking-[0.3em] text-neutral-600">
+                  <label className="mb-2 block text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-600">
                     Feedback Category
                   </label>
 
                   <select
                     name="category"
                     required
-                    className="w-full border border-neutral-400 bg-transparent p-4 outline-none transition focus:border-black"
+                    className="w-full border border-neutral-400 bg-transparent p-3 sm:p-4 text-sm sm:text-base outline-none transition focus:border-black"
                   >
                     <option value="">Select a category</option>
 
@@ -128,17 +132,17 @@ export default function FeedbackPage() {
                 </div>
 
                 <div>
-                  <label className="mb-3 block text-xs uppercase tracking-[0.3em] text-neutral-600">
+                  <label className="mb-3 block text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-600">
                     Experience Rating
                   </label>
 
-                  <div className="flex gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         type="button"
                         key={star}
                         onClick={() => setRating(star)}
-                        className="text-3xl cursor-pointer transition hover:scale-110"
+                        className="cursor-pointer text-2xl sm:text-3xl transition hover:scale-110"
                       >
                         {star <= rating ? "★" : "☆"}
                       </button>
@@ -149,7 +153,7 @@ export default function FeedbackPage() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-xs uppercase tracking-[0.3em] text-neutral-600">
+                  <label className="mb-2 block text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-600">
                     Subject
                   </label>
 
@@ -157,12 +161,12 @@ export default function FeedbackPage() {
                     type="text"
                     name="subject"
                     placeholder="Brief summary"
-                    className="w-full border border-neutral-400 bg-transparent p-4 outline-none transition focus:border-black"
+                    className="w-full border border-neutral-400 bg-transparent p-3 sm:p-4 text-sm sm:text-base outline-none transition focus:border-black"
                   />
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-xs uppercase tracking-[0.3em] text-neutral-600">
+                  <label className="mb-2 block text-[11px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-neutral-600">
                     Message
                   </label>
 
@@ -170,18 +174,18 @@ export default function FeedbackPage() {
                     name="message"
                     required
                     placeholder="Tell us what's on your mind..."
-                    className="h-40 w-full resize-none border border-neutral-400 bg-transparent p-4 outline-none transition focus:border-black"
+                    className="h-32 sm:h-40 w-full resize-none border border-neutral-400 bg-transparent p-3 sm:p-4 text-sm sm:text-base outline-none transition focus:border-black"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-black py-4 text-sm uppercase tracking-[0.25em] text-white cursor-pointer transition hover:opacity-90"
+                  className="w-full cursor-pointer bg-black py-3 sm:py-4 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white transition hover:opacity-90"
                 >
                   Send Feedback
                 </button>
 
-                <p className="text-center text-sm text-neutral-500">
+                <p className="text-center text-xs sm:text-sm text-neutral-500">
                   We typically review feedback within a few business days.
                 </p>
               </form>
