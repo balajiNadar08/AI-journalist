@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden inline-flex items-center rounded-md p-2 text-gray-700 hover:bg-gray-200 transition"
+              className="md:hidden inline-flex items-center rounded-full p-2 text-white hover:bg-gray-200 hover:text-black transition"
             >
               <svg
                 className="h-6 w-6"
@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-gray-50">
+        <div className="md:hidden border-b border-gray-200 bg-black">
           <div className="space-y-4 px-6 py-5 text-base font-medium">
             <Link
               href="/"
@@ -116,13 +116,6 @@ const Navbar: React.FC = () => {
             </Link>
 
             <Link
-              href="/"
-              className="block text-white hover:text-gray-500 transition-colors duration-200"
-            >
-              Features
-            </Link>
-
-            <Link
               href="/feedback"
               className="block text-white hover:text-gray-500 transition-colors duration-200"
             >
@@ -131,7 +124,7 @@ const Navbar: React.FC = () => {
 
             <div className="pt-3">
               <Link href="/auth/login">
-                <button className="w-full px-4 py-2 text-md font-medium text-white border border-white rounded-md hover:bg-white hover:text-white transition">
+                <button className="w-full px-4 py-2 text-md font-medium text-white border border-white rounded-md hover:bg-white hover:text-black transition">
                   Login
                 </button>
               </Link>
