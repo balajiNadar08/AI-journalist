@@ -30,15 +30,13 @@ export default function RegisterPage() {
   try {
     setLoading(true);
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: {
           username,
         },
-        emailRedirectTo:
-          "http://localhost:3000/auth/login",
       },
     });
 
@@ -47,11 +45,25 @@ export default function RegisterPage() {
       return;
     }
 
-    alert(
-      "Account created.Please log in to continue."
-    );
+    if (!data.user) {
+      alert("Signup failed.");
+      return;
+    }
 
-    router.push("/auth/login");
+    // Immediately sign in
+    const { error: loginError } =
+      await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+    if (loginError) {
+      alert(loginError.message);
+      return;
+    }
+
+    router.push("/dashboard");
+    router.refresh();
   } catch (err) {
     console.error(err);
     alert("Something went wrong.");
@@ -137,7 +149,7 @@ export default function RegisterPage() {
           disabled={loading}
           className="w-full rounded-md bg-black py-2 text-white transition hover:bg-gray-800 disabled:opacity-50"
         >
-          {loading ? "Creating Account..." : "Sign Up"}
+          {loading ? "Creating Account..." : "Create Account"}
         </button>
 
         <p className="mt-4 text-center text-sm text-gray-600">
