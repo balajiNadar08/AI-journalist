@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Newspaper in a click",
 };
 
-export default function RootLayout({
+export default function RootLayout({  
   children,
 }: Readonly<{
   children: React.ReactNode;

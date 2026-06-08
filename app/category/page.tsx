@@ -155,7 +155,6 @@ router.push("/news");
 };
 
 return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
-{/* PROFILE */}
 
   <div className="absolute right-10 top-6">
     <div className="relative">
@@ -216,7 +215,6 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
     </div>
   </div>
 
-  {/* HERO */}
 
   <section className="mx-auto max-w-7xl px-10 py-20">
     <div className="mb-16 text-center">
@@ -235,7 +233,6 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
       
     </div>
 
-    {/* CATEGORY GRID */}
 
     <div className="mx-auto grid max-w-5xl grid-cols-4 gap-6">
       {categories.map((category) => {
@@ -247,7 +244,7 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
             onClick={() => toggleCategory(category.name)}
             className={`
               flex
-              h-[170px]
+              h-42.5
               flex-col
               items-center
               justify-center
@@ -271,7 +268,6 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
       })}
     </div>
 
-    {/* CTA */}
 
     <div className="mt-24 flex justify-center">
       <div className="border border-neutral-400 bg-[#f4f3f1] p-6 shadow-[8px_8px_0px_#000]">
@@ -279,7 +275,7 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
           onClick={handleGenerate}
           disabled={loading}
           className="
-            w-[620px]
+            w-155
             border
             border-neutral-400
             bg-black

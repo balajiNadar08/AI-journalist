@@ -29,11 +29,10 @@ export default function LoginPage() {
     try {
       setLoading(true);
 
-      const { error } =
-        await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
       if (error) {
         alert(error.message);
@@ -53,8 +52,6 @@ export default function LoginPage() {
     <div
       className={`min-h-screen flex flex-col items-center justify-center bg-[#f4f3f1] px-4 ${lato.className}`}
     >
-      {/* Header */}
-
       <div className="mb-8 text-center">
         <h1
           className={`${playfair.className} mb-3 text-3xl font-semibold text-black md:text-4xl`}
@@ -63,12 +60,10 @@ export default function LoginPage() {
         </h1>
 
         <p className="text-base text-gray-600 md:text-lg">
-          Continue exploring concise, intelligent
-          coverage from around the world.
+          Continue exploring concise, intelligent coverage from around the
+          world.
         </p>
       </div>
-
-      {/* Login Card */}
 
       <div className="relative w-full max-w-md overflow-hidden rounded-xl border border-gray-200 bg-white p-8 shadow-md">
         <h2
@@ -77,43 +72,29 @@ export default function LoginPage() {
           Login
         </h2>
 
-        {/* Email */}
-
         <div className="mb-4">
-          <label className="mb-2 block text-sm font-medium">
-            Email
-          </label>
+          <label className="mb-2 block text-sm font-medium">Email</label>
 
           <input
             type="email"
             placeholder="Enter your email"
             value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
           />
         </div>
 
-        {/* Password */}
-
         <div className="mb-6">
-          <label className="mb-2 block text-sm font-medium">
-            Password
-          </label>
+          <label className="mb-2 block text-sm font-medium">Password</label>
 
           <input
             type="password"
             placeholder="Enter your password"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
           />
         </div>
-
-        {/* Login Button */}
 
         <button
           onClick={handleLogin}
@@ -123,14 +104,9 @@ export default function LoginPage() {
           {loading ? "Logging In..." : "Login"}
         </button>
 
-        {/* Register Link */}
-
         <p className="mt-4 text-center text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link
-            href="/auth/register"
-            className="text-black hover:underline"
-          >
+          <Link href="/auth/register" className="text-black hover:underline">
             Register
           </Link>
         </p>

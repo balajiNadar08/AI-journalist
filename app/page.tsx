@@ -87,18 +87,18 @@ export default function Home() {
           </BlurFade>
 
           <BlurFade delay={0.75}>
-      <Link href="/auth/login">
-       <button
-        className={`${lato.className} rounded-full mt-8 border border-white text-white px-10 py-3 text-md font-bold uppercase tracking-widest cursor-pointer hover:bg-white hover:text-black transition-all duration-300`}
-      >
-      Try Now
-       </button>
-      </Link>
+            <Link href="/auth/login">
+              <button
+                className={`${lato.className} rounded-full mt-8 border border-white text-white px-10 py-3 text-md font-bold uppercase tracking-widest cursor-pointer hover:bg-white hover:text-black transition-all duration-300`}
+              >
+                Try Now
+              </button>
+            </Link>
           </BlurFade>
         </div>
       </section>
 
-      <section className="w-full min-h-screen bg-[#f4f3f1] px-6 py-24 border">
+      <section className="w-full min-h-screen bg-[##F4F3F1] px-6 py-24 border">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className=" p-10 md:p-14 h-125 flex flex-col justify-center">
             <BlurFade delay={0.25} inView>
@@ -176,7 +176,7 @@ export default function Home() {
                 >
                   <source src="/quick-mode.mp4" type="video/mp4" />
                 </video>
-              </div> 
+              </div>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
@@ -261,7 +261,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full px-6 pt-24 pb-40 bg-[#f4f3f1] border border-black">
+      <section className="w-full px-6 pt-24 pb-40 bg-[##F4F3F1] border border-black">
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <h2
             className={`${playfair.className} text-4xl px-20 pb-6 font-semibold tracking-tight md:text-5xl`}
