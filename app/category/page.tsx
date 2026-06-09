@@ -80,82 +80,63 @@ await supabase.auth.signOut();
 router.push("/");
 };
 
-const handleGenerate = async () => {
-if (selected.length === 0) {
-  alert("Please select at least one category.");
-  return;
+const handleGenerateBrief = async () => {
+  try {
+    setLoading(true);
 
-}
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
+    if (!user) {
+      router.push("/auth/login");
+      return;
+    }
 
-setLoading(true);
+    const { data: categoryRows, error: categoryError } =
+      await supabase
+        .from("categories")
+        .select("*");
 
-const {
-  data: { user },
-} = await supabase.auth.getUser();
+    if (categoryError) {
+      alert(categoryError.message);
+      return;
+    }
 
-if (!user) {
-  router.push("/auth/login");
-  return;
-}
+    const selectedIds =
+      categoryRows
+        ?.filter((c) =>
+          selected.includes(c.name)
+        )
+        .map((c) => ({
+          user_id: user.id,
+          category_id: c.id,
+        })) || [];
 
-const { data: categoryRows, error: categoryError } =
-  await supabase
-    .from("categories")
-    .select("*");
+    await supabase
+      .from("user_interests")
+      .delete()
+      .eq("user_id", user.id);
 
-console.log("CATEGORY ROWS:", categoryRows);
-console.log("CATEGORY ERROR:", categoryError);
+    const { error } = await supabase
+      .from("user_interests")
+      .insert(selectedIds);
 
-const selectedIds =
-  categoryRows
-    ?.filter((c) =>
-      selected.includes(
-        String(c.name).toUpperCase()
-      )
-    )
-    .map((c) => ({
-      user_id: user.id,
-      category_id:
-        c.id ?? c.category_id,
-    })) || [];
+    if (error) {
+      alert(error.message);
+      return;
+    }
 
-console.log("SELECTED:", selected);
-console.log("SELECTED IDS:", selectedIds);
-
-const { error: deleteError } =
-  await supabase
-    .from("user_interests")
-    .delete()
-    .eq("user_id", user.id);
-
-console.log("DELETE ERROR:", deleteError);
-
-const {
-  data: insertedData,
-  error: insertError,
-} = await supabase
-  .from("user_interests")
-  .insert(selectedIds)
-  .select();
-
-console.log("INSERTED DATA:", insertedData);
-console.log("INSERT ERROR:", insertError);
-
-if (insertError) {
-  alert(insertError.message);
-  setLoading(false);
-  return;
-}
-
-
-router.push("/news");
-
-
+    router.push("/news");
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
 };
 
 return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
-{/* PROFILE */}
 
   <div className="absolute right-10 top-6">
     <div className="relative">
@@ -216,7 +197,6 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
     </div>
   </div>
 
-  {/* HERO */}
 
   <section className="mx-auto max-w-7xl px-10 py-20">
     <div className="mb-16 text-center">
@@ -235,7 +215,6 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
       
     </div>
 
-    {/* CATEGORY GRID */}
 
     <div className="mx-auto grid max-w-5xl grid-cols-4 gap-6">
       {categories.map((category) => {
@@ -247,7 +226,7 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
             onClick={() => toggleCategory(category.name)}
             className={`
               flex
-              h-[170px]
+              h-42.5
               flex-col
               items-center
               justify-center
@@ -271,15 +250,14 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
       })}
     </div>
 
-    {/* CTA */}
 
     <div className="mt-24 flex justify-center">
       <div className="border border-neutral-400 bg-[#f4f3f1] p-6 shadow-[8px_8px_0px_#000]">
         <button
-          onClick={handleGenerate}
+          onClick={handleGenerateBrief}
           disabled={loading}
           className="
-            w-[620px]
+            w-155
             border
             border-neutral-400
             bg-black
