@@ -1,7 +1,9 @@
+"use client";
 import { Playfair_Display, Lato } from "next/font/google";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { Marquee, ReviewCard } from "@/components/ui/marquee";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -55,8 +57,28 @@ const reviews = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+
+  async function handleTryNow() {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    router.push("/dashboard");
+  } else {
+    router.push("/auth/login");
+  }
+}
+
+  
+
   return (
     <main className="bg-white text-black">
+      
+    
+  
+
       <section className="relative min-h-[calc(100vh-80px)] overflow-hidden flex flex-col items-center justify-center px-6">
         <video
           autoPlay
@@ -87,13 +109,13 @@ export default function Home() {
           </BlurFade>
 
           <BlurFade delay={0.75}>
-            <Link href="/auth/login">
               <button
+                onClick={handleTryNow}
                 className={`${lato.className} rounded-full mt-8 border border-white text-white px-10 py-3 text-md font-bold uppercase tracking-widest cursor-pointer hover:bg-white hover:text-black transition-all duration-300`}
               >
-                Try Now
+                  Try Now
               </button>
-            </Link>
+           
           </BlurFade>
         </div>
       </section>
@@ -114,7 +136,7 @@ export default function Home() {
               <p
                 className={`${lato.className} mt-8 text-lg text-black/70 leading-relaxed`}
               >
-                AI Journalist is a personalized AI-powered news platform that
+                Sandesa is a personalized AI-powered news platform that
                 filters unnecessary information and delivers only the stories
                 you care about.
               </p>
@@ -266,7 +288,7 @@ export default function Home() {
           <h2
             className={`${playfair.className} text-4xl px-20 pb-6 font-semibold tracking-tight md:text-5xl`}
           >
-            What Readers Think About AI Journalist
+            What Readers Think About Sandesa
           </h2>
 
           <p

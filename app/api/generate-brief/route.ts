@@ -7,26 +7,41 @@ import { generateBrief } from "@/lib/generator/generateBrief";
 
 export async function POST(req: NextRequest) {
   try {
-    const { userId } = await req.json();
+    const { userId, categories } = await req.json();
 
     if (!userId) {
       return NextResponse.json(
         { error: "Missing userId" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
-    const categories = await getUserCategories(userId);
+    let categoryNames: string[] = [];
 
-    if (!categories.length) {
+    // Categories selected on Category page
+    if (
+      categories &&
+      Array.isArray(categories) &&
+      categories.length > 0
+    ) {
+      categoryNames = categories;
+    } else {
+      // Fallback to onboarding interests
+      categoryNames = await getUserCategories(userId);
+    }
+
+    if (!categoryNames.length) {
       return NextResponse.json({
         success: true,
         articles: [],
       });
     }
 
-    const feedUrls = categories.flatMap(
-      (name) => RSS_FEEDS[name as keyof typeof RSS_FEEDS] || [],
+    const feedUrls = categoryNames.flatMap(
+      (name) =>
+        RSS_FEEDS[
+          name as keyof typeof RSS_FEEDS
+        ] || []
     );
 
     const feeds = await fetchFeeds(feedUrls);
@@ -40,21 +55,29 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const generatedArticles = await generateBrief(articles);
+    const generatedArticles =
+      await generateBrief(articles);
 
     return NextResponse.json({
       success: true,
       articles: generatedArticles,
     });
   } catch (error: any) {
+    console.error(
+      "GENERATE BRIEF ERROR:",
+      error
+    );
+
     return NextResponse.json(
       {
         success: false,
-        error: error.message,
+        error:
+          error.message ||
+          "Failed to generate brief",
       },
       {
         status: 500,
-      },
+      }
     );
   }
 }
