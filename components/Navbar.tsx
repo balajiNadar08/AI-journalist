@@ -84,7 +84,7 @@ const Navbar: React.FC = () => {
               href="/"
               className={`${playfair.className} text-2xl md:text-3xl font-semibold tracking-wide text-white hover:opacity-80 transition`}
             >
-              AI Journalist
+              SANDESA
             </Link>
           </div>
 
