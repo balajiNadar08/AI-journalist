@@ -41,6 +41,7 @@ const [username, setUsername] = useState("User");
 const [selected, setSelected] = useState<string[]>([]);
 const [loading, setLoading] = useState(false);
 const [profileOpen, setProfileOpen] = useState(false);
+const [mode, setMode] = useState<"quick" | "brief">("quick");
 
 useEffect(() => {
 loadUser();
@@ -208,9 +209,55 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
       </h2>
 
       <p className="mt-8 text-xl text-neutral-600">
-        Select one or more categories to personalize your
-        intelligence feed.
-      </p>
+  Select one or more categories to personalize your
+  intelligence feed.
+</p>
+
+<div className="mt-10 flex justify-center gap-6">
+  <button
+    onClick={() => setMode("quick")}
+    className={`
+      w-72
+      border
+      px-8
+      py-5
+      text-sm
+      tracking-[0.2em]
+      transition-all
+      ${
+        mode === "quick"
+          ? "border-black bg-black text-white"
+          : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
+      }
+    `}
+  >
+    QUICKY MODE
+  </button>
+
+  <button
+    onClick={() => setMode("brief")}
+    className={`
+      w-72
+      border
+      px-8
+      py-5
+      text-sm
+      tracking-[0.2em]
+      transition-all
+      ${
+        mode === "brief"
+          ? "border-black bg-black text-white"
+          : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
+      }
+    `}
+  >
+    BRIEF MODE
+  </button>
+</div>
+
+<p className="mt-4 text-sm text-neutral-500">
+  
+</p>
 
       
     </div>
