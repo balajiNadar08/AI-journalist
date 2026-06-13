@@ -3,6 +3,7 @@ import { buildPrompt } from "./buildPrompt";
 import { cleanResponse } from "./cleanResponse";
 
 export async function generateBrief(articles: any[]) {
+  
   const prompt = buildPrompt(articles);
 
   const result = await geminiModel.generateContent(prompt);

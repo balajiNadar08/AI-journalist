@@ -23,52 +23,60 @@ export default function NewsPage() {
   }, []);
 
   async function loadNews() {
-    try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+  try {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-      if (!user) {
-        router.push("/auth/login");
-        return;
-      }
+    if (!user) {
+      router.push("/auth/login");
+      return;
+    }
 
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("username")
-        .eq("id", user.id)
-        .single();
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("username")
+      .eq("id", user.id)
+      .single();
 
-      if (profile?.username) {
-        setUsername(profile.username);
-      }
+    if (profile?.username) {
+      setUsername(profile.username);
+    }
 
-      const response = await fetch("/api/generate-brief", {
+    const selectedCategories = JSON.parse(
+      sessionStorage.getItem("selectedCategories") || "[]"
+    );
+
+    const response = await fetch(
+      "/api/generate-brief",
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           userId: user.id,
+          categories: selectedCategories,
         }),
-      });
-
-      const data = await response.json();
-
-      console.log("NEWS RESPONSE:", data);
-
-      if (!response.ok) {
-        alert(data.error);
-        return;
       }
+    );
 
-      setArticles(data.articles || []);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
+    const data = await response.json();
+
+    console.log("NEWS RESPONSE:", data);
+
+    if (!response.ok) {
+      alert(data.error);
+      return;
     }
+
+    setArticles(data.articles || []);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
   }
+}
 
   if (loading) {
     return (

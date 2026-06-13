@@ -76,57 +76,21 @@ prev.includes(name)
 );
 };
 
-const handleLogout = async () => {
-await supabase.auth.signOut();
-router.push("/");
-};
+
 
 const handleGenerateBrief = async () => {
+  if (selected.length === 0) {
+    alert("Please select at least one category.");
+    return;
+  }
+
+  setLoading(true);
+
   try {
-    setLoading(true);
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    if (!user) {
-      router.push("/auth/login");
-      return;
-    }
-
-    const { data: categoryRows, error: categoryError } =
-      await supabase
-        .from("categories")
-        .select("*");
-
-    if (categoryError) {
-      alert(categoryError.message);
-      return;
-    }
-
-    const selectedIds =
-      categoryRows
-        ?.filter((c) =>
-          selected.includes(c.name)
-        )
-        .map((c) => ({
-          user_id: user.id,
-          category_id: c.id,
-        })) || [];
-
-    await supabase
-      .from("user_interests")
-      .delete()
-      .eq("user_id", user.id);
-
-    const { error } = await supabase
-      .from("user_interests")
-      .insert(selectedIds);
-
-    if (error) {
-      alert(error.message);
-      return;
-    }
+    sessionStorage.setItem(
+      "selectedCategories",
+      JSON.stringify(selected)
+    );
 
     router.push("/news");
   } catch (error) {
@@ -186,15 +150,18 @@ return ( <main className="min-h-screen bg-[#f4f3f1] text-black">
       </button>
 
       {profileOpen && (
-        <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl">
-          <button
-            onClick={handleLogout}
-            className="block w-full px-4 py-3 text-left text-red-600 hover:bg-neutral-100"
-          >
-            Logout
-          </button>
-        </div>
-      )}
+  <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl">
+    <button
+      onClick={() => {
+        setProfileOpen(false);
+        router.push("/");
+      }}
+      className="block w-full px-4 py-3 text-left hover:bg-neutral-100"
+    >
+      Back to Home
+    </button>
+  </div>
+)}
     </div>
   </div>
 
