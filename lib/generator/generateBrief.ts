@@ -11,8 +11,20 @@ export async function generateBrief(articles: any[]) {
 
   const generatedArticles = cleanResponse(text);
 
+  console.log(generatedArticles.map((article: any) => ({
+    title:
+      article.title ??
+      articles[article.id]?.title ??
+      "Untitled",
+    summary: article.summary,
+    link: articles[article.id]?.link ?? "#",
+  })));
+
   return generatedArticles.map((article: any) => ({
-    title: articles[article.id]?.title ?? "Untitled",
+    title:
+      article.title ??
+      articles[article.id]?.title ??
+      "Untitled",
     summary: article.summary,
     link: articles[article.id]?.link ?? "#",
   }));
