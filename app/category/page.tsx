@@ -73,29 +73,50 @@ export default function CategorySelectionPage() {
   };
 
   const handleGenerateBrief = async () => {
-    if (selected.length === 0) {
-      alert("Please select at least one category.");
-      return;
-    }
+  if (selected.length === 0) {
+    alert("Please select at least one category.");
+    return;
+  }
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      sessionStorage.setItem("selectedCategories", JSON.stringify(selected));
+  try {
+    sessionStorage.removeItem(
+      "usePersonalisedNews"
+    );
 
-      sessionStorage.setItem("newsMode", mode);
+    sessionStorage.setItem(
+      "selectedCategories",
+      JSON.stringify(selected)
+    );
 
-      router.push("/news");
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    sessionStorage.setItem(
+      "newsMode",
+      mode
+    );
 
+    router.push("/news");
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
+ const handlePersonalisedNews = async () => {
+  sessionStorage.removeItem(
+    "selectedCategories"
+  );
+
+  sessionStorage.setItem(
+    "usePersonalisedNews",
+    "true"
+  );
+
+  router.push("/news");
+};
   return (
-    <main className="min-h-screen bg-[#f4f3f1] text-black">
+    <main className="min-h-screen bg-[#f7f2e7] text-black">
       <div className="absolute right-10 top-6">
         <div className="relative">
           <button
@@ -141,18 +162,30 @@ export default function CategorySelectionPage() {
           </button>
 
           {profileOpen && (
-            <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl">
-              <button
-                onClick={() => {
-                  setProfileOpen(false);
-                  router.push("/");
-                }}
-                className="block w-full px-4 py-3 text-left hover:bg-neutral-100"
-              >
-                Back to Home
-              </button>
-            </div>
-          )}
+  <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl z-50">
+
+    <button
+      onClick={() => {
+        setProfileOpen(false);
+        router.push("/onboarding");
+      }}
+      className="block w-full border-b border-neutral-200 px-4 py-3 text-left hover:bg-neutral-100"
+    >
+      Edit Personalised News
+    </button>
+
+    <button
+      onClick={() => {
+        setProfileOpen(false);
+        router.push("/");
+      }}
+      className="block w-full px-4 py-3 text-left hover:bg-neutral-100"
+    >
+      Back to Home
+    </button>
+
+  </div>
+)}
         </div>
       </div>
 
@@ -170,9 +203,9 @@ export default function CategorySelectionPage() {
           </p>
 
           <div className="mt-10 flex justify-center gap-6">
-            <button
-              onClick={() => setMode("quick")}
-              className={`
+  <button
+    onClick={() => setMode("quick")}
+    className={`
       w-72
       border
       px-8
@@ -186,13 +219,13 @@ export default function CategorySelectionPage() {
           : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
       }
     `}
-            >
-              QUICKY MODE
-            </button>
+  >
+    QUICKY MODE
+  </button>
 
-            <button
-              onClick={() => setMode("brief")}
-              className={`
+  <button
+    onClick={() => setMode("brief")}
+    className={`
       w-72
       border
       px-8
@@ -206,12 +239,30 @@ export default function CategorySelectionPage() {
           : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
       }
     `}
-            >
-              BRIEF MODE
-            </button>
-          </div>
+  >
+    BRIEF MODE
+  </button>
 
-          <p className="mt-4 text-sm text-neutral-500"></p>
+  <button
+    onClick={handlePersonalisedNews}
+    className="
+      w-72
+      border
+      border-neutral-400
+      bg-white
+      px-8
+      py-5
+      text-sm
+      tracking-[0.2em]
+      text-black
+      transition-all
+      hover:bg-black
+      hover:text-white
+    "
+  >
+    PERSONALISED NEWS
+  </button>
+</div>
         </div>
 
         <div className="mx-auto grid max-w-5xl grid-cols-4 gap-6">
@@ -234,7 +285,7 @@ export default function CategorySelectionPage() {
               ${
                 selected.includes(category.name)
                   ? "border-black bg-black text-white"
-                  : "border-neutral-400 bg-[#f4f3f1] hover:bg-black hover:text-white"
+                  : "border-neutral-400 bg-[#f7f2e7] hover:bg-black hover:text-white"
               }
             `}
               >

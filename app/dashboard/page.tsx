@@ -49,7 +49,7 @@ export default function DashboardPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#f4f3f1]">
+      <main className="flex min-h-screen items-center justify-center bg-[#f7f2e7]">
         <p className="text-lg text-neutral-600">Loading your newsroom...</p>
       </main>
     );
@@ -75,7 +75,7 @@ export default function DashboardPage() {
 
   return (
     <main
-      className="relative flex min-h-screen items-center justify-center bg-[#f4f3f1] px-6"
+      className="relative flex min-h-screen items-center justify-center bg-[#f7f2e7] px-6"
       style={{
         backgroundImage:
           "radial-gradient(rgba(0,0,0,0.04) 0.8px, transparent 0.8px)",
@@ -107,18 +107,30 @@ export default function DashboardPage() {
           </button>
 
           {profileOpen && (
-            <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl">
-              <button
-                onClick={() => {
-                  setProfileOpen(false);
-                  router.push("/");
-                }}
-                className="block w-full px-4 py-3 text-left hover:bg-neutral-100"
-              >
-                Back to Home
-              </button>
-            </div>
-          )}
+  <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl">
+    
+    <button
+      onClick={() => {
+        setProfileOpen(false);
+        router.push("/onboarding");
+      }}
+      className="block w-full border-b border-neutral-200 px-4 py-3 text-left hover:bg-neutral-100"
+    >
+      Edit Personalised News
+    </button>
+
+    <button
+      onClick={() => {
+        setProfileOpen(false);
+        router.push("/");
+      }}
+      className="block w-full px-4 py-3 text-left hover:bg-neutral-100"
+    >
+      Back to Home
+    </button>
+
+  </div>
+)}
         </div>
       </div>
 
