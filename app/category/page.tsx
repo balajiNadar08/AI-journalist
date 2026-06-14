@@ -113,6 +113,11 @@ export default function CategorySelectionPage() {
     "true"
   );
 
+  sessionStorage.setItem(
+    "newsMode",
+    mode
+  );
+
   router.push("/news");
 };
   return (
