@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { Playfair_Display, Lato } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -43,12 +45,16 @@ export default function NewsPage() {
   const [loading, setLoading] = useState(true);
   const [articles, setArticles] = useState<Article[]>([]);
   const [username, setUsername] = useState("Reader");
-
+  const [mode, setMode] = useState<"quick" | "brief">("quick");
   useEffect(() => {
     loadNews();
   }, []);
 
   async function loadNews() {
+    const selectedMode =
+      (sessionStorage.getItem("newsMode") as "quick" | "brief") || "quick";
+    setMode(selectedMode);
+
     try {
       const {
         data: { user },
@@ -150,6 +156,104 @@ export default function NewsPage() {
 
   const leadArticle = articles[0];
   const remainingArticles = articles.slice(1);
+
+  function QuickEdition({
+    username,
+    articles,
+  }: {
+    username: string;
+    articles: Article[];
+  }) {
+    const today = new Date();
+
+    return (
+      <main className="min-h-screen bg-[#f7f2e7] flex justify-center px-4 py-8">
+        <div className="w-full max-w-4xl bg-[#fffdf8] border border-[#1e1b16] px-10 py-8 my-5 shadow-sm">
+          <div className="text-center border-b border-dashed border-[#1e1b16] pb-5">
+            <h1 className={`${playfair.className} text-5xl tracking-tight`}>
+              SANDESA
+            </h1>
+
+            <p
+              className={`${lato.className} mt-1 text-[11px] uppercase tracking-[0.4em]`}
+            >
+              Quicky
+            </p>
+
+            <p className={`${lato.className} mt-4 text-sm text-[#6b6457]`}>
+              {today.toLocaleDateString()}
+            </p>
+          </div>
+
+          <div
+            className={`${lato.className} mt-5 space-y-2 text-sm uppercase tracking-wider`}
+          >
+            <div className="flex items-center justify-between">
+              <span>Reader</span>
+              <span className="font-medium">{username}</span>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span>Stories</span>
+              <span className="font-medium">{articles.length}</span>
+            </div>
+          </div>
+
+          <div className="border-t border-dashed border-black my-6"></div>
+
+          <div className="space-y-6">
+            {articles.map((article, index) => (
+              <div key={index}>
+                <div className="flex items-center justify-between gap-5">
+                  <h3
+                    className={`${playfair.className} flex-1 items-center text-2xl font-bold leading-tight`}
+                  >
+                    <span className="pr-2">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    {"  "} {article.title}
+                  </h3>
+
+                  <a
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${lato.className} shrink-0 text-xs uppercase tracking-widest text-[#8b0000] hover:underline`}
+                  >
+                    Source →
+                  </a>
+                </div>
+
+                <p
+                  className={`${lato.className} mt-3 text-base leading-8 text-[#4b463f]`}
+                >
+                  {article.summary}
+                </p>
+
+                <div className="mt-5 border-b border-dashed border-[#bfb6a6]" />
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 border-t border-dashed border-[#1e1b16] pt-5 text-center">
+            <p className={`${playfair.className} text-base italic`}>
+              End of Brief
+            </p>
+
+            <p
+              className={`${lato.className} mt-2 text-[11px] uppercase tracking-[0.35em] text-[#6b6457]`}
+            >
+              Read • Learn • Reflect
+            </p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  if (mode === "quick") {
+    return <QuickEdition username={username} articles={articles} />;
+  }
 
   return (
     <main className="min-h-screen bg-[#f7f2e7] text-[#1e1b16]">
