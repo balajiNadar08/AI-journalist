@@ -10,7 +10,7 @@ export default function AboutPage() {
      number: "02",
      title: "Trust",
      description:
-       "Every claim made by AI Journalist is backed by traceable, immutable data sources and verification logs.",
+       "Every claim made by Sandesa is backed by traceable, immutable data sources and verification logs.",
    },
    {
      number: "03",
@@ -35,13 +35,12 @@ export default function AboutPage() {
              className="mb-8 text-7xl leading-none"
              style={{ fontFamily: "Georgia, serif" }}
            >
-             About AI Journalist
+             About Sandesa
            </h1>
 
 
            <p className="max-w-xl text-lg leading-9 text-neutral-700">
-            AI Journalist is a personalized AI-powered news platform built for readers who value clarity over noise.
-            Instead of spending hours browsing multiple websites, users can select the topics they care about and receive concise, source-backed summaries in seconds. Our goal is simple: help people stay informed without information overload.
+            Sandesa is an AI-powered news platform that brings you the news you care about. Instead of browsing multiple websites, you can choose your favorite topics and receive concise, reliable summaries from trusted sources. By personalizing content based on individual interests, the platform helps readers stay informed quickly and efficiently, making it easier to keep up with important news without information overload.
            </p>
 
 
@@ -86,7 +85,7 @@ export default function AboutPage() {
            <div className="space-y-6 text-neutral-700">
              <p className="leading-8">
                The modern news landscape is fragmented. Important stories are scattered across websites, social platforms, newsletters, and feeds competing for attention.
-               AI Journalist was created to bring those signals together, filter out unnecessary noise, and deliver the information that truly matters.
+               Sandesa was created to bring those signals together, filter out unnecessary noise, and deliver the information that truly matters.
              </p>
 
 
@@ -95,25 +94,16 @@ export default function AboutPage() {
          </div>
 
 
-         {/* Newspaper ASCII Panel */}
-         <div className="flex items-center justify-center p-10">
-           <div className="w-full bg-black p-8 font-mono text-xs text-green-400">
-             <pre>{`
-AI JOURNALIST // CORE ENGINE
-
-
-[✓] SIGNAL PROCESSING
-[✓] SOURCE VERIFICATION
-[✓] FACT EXTRACTION
-[✓] BIAS REDUCTION
-[✓] REAL-TIME ANALYSIS
-
-
-STATUS: OPERATIONAL
-VERSION: 4.0.2
-             `}</pre>
-           </div>
-         </div>
+         {/* About Image */}
+<div className="flex items-center justify-center p-10">
+  <div className="w-full overflow-hidden border border-neutral-300">
+    <img
+      src="/IMG_2539.webp"
+      alt="Sandesa"
+      className="w-full h-auto"
+    />
+  </div>
+</div>
        </div>
      </section>
 

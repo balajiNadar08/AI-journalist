@@ -69,6 +69,12 @@ export default function NewsPage() {
         setUsername(profile.username);
       }
 
+      const selectedCategories = JSON.parse(
+        sessionStorage.getItem("selectedCategories") || "[]",
+      );
+
+      const mode = sessionStorage.getItem("newsMode") || "quick";
+
       const response = await fetch("/api/generate-brief", {
         method: "POST",
         headers: {
@@ -76,10 +82,14 @@ export default function NewsPage() {
         },
         body: JSON.stringify({
           userId: user.id,
+          categories: selectedCategories,
+          mode,
         }),
       });
 
       const data = await response.json();
+
+      console.log("NEWS RESPONSE:", data);
 
       if (!response.ok) {
         alert(data.error);

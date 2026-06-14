@@ -1,9 +1,14 @@
 import { geminiModel } from "@/lib/gemini";
 import { buildPrompt } from "./buildPrompt";
+import { buildQuickyPrompt } from "./buildQuickyPrompt";
 import { cleanResponse } from "./cleanResponse";
 
-export async function generateBrief(articles: any[]) {
-  const prompt = buildPrompt(articles);
+export async function generateBrief(
+  articles: any[],
+  mode: "quick" | "brief" = "brief",
+) {
+  const prompt =
+    mode === "quick" ? buildQuickyPrompt(articles) : buildPrompt(articles);
 
   const result = await geminiModel.generateContent(prompt);
 
@@ -11,21 +16,13 @@ export async function generateBrief(articles: any[]) {
 
   const generatedArticles = cleanResponse(text);
 
-  console.log(generatedArticles.map((article: any) => ({
-    title:
-      article.title ??
-      articles[article.id]?.title ??
-      "Untitled",
-    summary: article.summary,
-    link: articles[article.id]?.link ?? "#",
-  })));
-
   return generatedArticles.map((article: any) => ({
-    title:
-      article.title ??
-      articles[article.id]?.title ??
-      "Untitled",
+    title: article.title ?? articles[article.id]?.title ?? "Untitled",
+
     summary: article.summary,
+
     link: articles[article.id]?.link ?? "#",
+
+    source: articles[article.id]?.source ?? "",
   }));
 }

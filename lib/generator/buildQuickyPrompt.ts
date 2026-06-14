@@ -12,27 +12,25 @@ ${article.contentSnippet || article.content || ""}
     .slice(0, 10000);
 
   return `
-You are an AI newspaper editor.
-
-Analyze the articles below.
+You are a news editor.
 
 Return ONLY valid JSON.
 
 [
   {
     "id": 0,
-    "point": "One-sentence news bullet."
+    "title": "AI Chip Race Accelerates",
+    "summary": "Nvidia launches next-generation AI chips."
   }
 ]
 
 Rules:
-- Keep the exact ID.
-- Select the 20 most important stories.
-- Each point must be ONE concise sentence.
-- Focus only on the key fact.
-- Use a newspaper style.
-- No clickbait.
-- No URLs.
+- Keep exact ID.
+- Select the 8 most important stories.
+- Generate a short title.
+- Summary must be ONE sentence.
+- Maximum 20 words.
+- No explanations.
 - Return only valid JSON.
 
 ARTICLES:

@@ -26,7 +26,7 @@ export default function Footer() {
           <p
             className={`${playfair.className} text-2xl font-semibold tracking-wide text-black`}
           >
-            AI Journalist
+            Sandesa
           </p>
 
           <p className="text-[15px] tracking-[0.2px] text-black/70 text-center sm:text-right">
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-4 text-center text-[13px] text-black/60">
-          © {new Date().getFullYear()} AI Journalist. All rights reserved.
+          © {new Date().getFullYear()} Sandesa. All rights reserved.
         </div>
       </div>
     </footer>

@@ -34,7 +34,6 @@ export default function DashboardPage() {
 
       if (error) {
         console.error("PROFILE ERROR:", error);
-
         setUsername("User");
         setLoading(false);
         return;
@@ -48,12 +47,6 @@ export default function DashboardPage() {
     }
   };
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-
-    router.push("/");
-  };
-
   if (loading) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#f4f3f1]">
@@ -61,6 +54,7 @@ export default function DashboardPage() {
       </main>
     );
   }
+
   const getGreeting = () => {
     const indiaTime = new Date().toLocaleString("en-US", {
       timeZone: "Asia/Kolkata",
@@ -72,7 +66,7 @@ export default function DashboardPage() {
       return "Good Afternoon";
     }
 
-    if (hour >= 17 && hour < 23.59) {
+    if (hour >= 17) {
       return "Good Evening";
     }
 
@@ -88,56 +82,48 @@ export default function DashboardPage() {
         backgroundSize: "14px 14px",
       }}
     >
+      {/* Profile Button */}
       <div className="absolute right-10 top-6">
         <div className="relative">
           <button
             onClick={() => setProfileOpen(!profileOpen)}
-            className="flex tems-center gap-3 rounded-full border border-neutral-300 bg-white px-4 py-2 shadow-sm hover:shadow-md transition"
+            className="flex items-center gap-3 rounded-full border border-neutral-300 bg-white px-4 py-2 shadow-sm hover:shadow-md transition"
           >
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-black text-sm font-medium text-white">
-              {username.charAt(0).toUpperCase()}
+              {(username || "U").charAt(0).toUpperCase()}
             </div>
 
-            <span className="text-sm font-medium">{username}</span>
+            <span className="text-sm font-medium">
+              {username}
+            </span>
 
-            <span className="text-xs">▼</span>
+            <span
+              className={`text-xs transition-transform ${
+                profileOpen ? "rotate-180" : ""
+              }`}
+            >
+              ▼
+            </span>
           </button>
 
           {profileOpen && (
-            <div
-              className="
-                absolute
-                right-0
-                mt-2
-                w-48
-                overflow-hidden
-                rounded-xl
-                border
-                border-neutral-200
-                bg-white
-                shadow-xl
-              "
-            >
+            <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl">
               <button
-                onClick={handleLogout}
-                className="
-                  block
-                  w-full
-                  px-4
-                  py-3
-                  text-left
-                  text-red-600
-                  hover:bg-neutral-100
-                "
+                onClick={() => {
+                  setProfileOpen(false);
+                  router.push("/");
+                }}
+                className="block w-full px-4 py-3 text-left hover:bg-neutral-100"
               >
-                Logout
+                Back to Home
               </button>
             </div>
           )}
         </div>
       </div>
 
-      <section className="mx-auto w-full max-w-187.5 text-center">
+      {/* Main Content */}
+      <section className="mx-auto w-full max-w-[750px] text-center">
         <h2
           className="mb-4 text-5xl font-bold leading-[0.95] md:text-6xl lg:text-7xl"
           style={{ fontFamily: "Georgia, serif" }}
@@ -148,7 +134,7 @@ export default function DashboardPage() {
         </h2>
 
         <h3
-          className="mx-auto mb-12 max-w-162.5 text-3xl font-semibold leading-[1.05] text-neutral-500 md:text-4xl lg:text-5xl"
+          className="mx-auto mb-12 max-w-[650px] text-3xl font-semibold leading-[1.05] text-neutral-500 md:text-4xl lg:text-5xl"
           style={{ fontFamily: "Georgia, serif" }}
         >
           What would you like to
@@ -179,7 +165,7 @@ export default function DashboardPage() {
           </span>
         </button>
 
-        <p className="mx-auto mt-8 max-w-125 text-lg text-neutral-600">
+        <p className="mx-auto mt-8 max-w-[500px] text-lg text-neutral-600">
           Select one or more categories to generate your personalized news
           briefing.
         </p>
