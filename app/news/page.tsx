@@ -75,7 +75,7 @@ const selectedCategories = JSON.parse(
   sessionStorage.getItem("selectedCategories") || "[]"
 );
 
-const mode =
+const newsMode =
   sessionStorage.getItem("newsMode") || "quick";
 
 const response = await fetch(
@@ -86,11 +86,13 @@ const response = await fetch(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      userId: user.id,
-      categories: selectedCategories,
-      personalised: usePersonalisedNews,
-      mode,
-    }),
+  userId: user.id,
+  categories: usePersonalisedNews
+    ? undefined
+    : selectedCategories,
+  personalised: usePersonalisedNews,
+  mode: newsMode,
+}),
   }
 );
 
