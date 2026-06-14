@@ -130,7 +130,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f4f3f1] text-black">
+    <main className="min-h-screen bg-[#f7f2e7] text-black">
       <section className="mx-auto max-w-7xl px-10 py-20">
         <div className="mb-16 text-center">
           <h2
@@ -145,12 +145,11 @@ export default function OnboardingPage() {
           </h2>
 
           <p className="mt-8 text-xl text-neutral-600">
-            Select your favorite topics.
+            Select your favorite categories.
           </p>
 
           <p className="mt-3 text-neutral-500">
-            We'll use these interests to
-            personalize your AI newsroom.
+            We'll use these interests to give you a personalized news experience.
           </p>
         </div>
 
@@ -165,22 +164,21 @@ export default function OnboardingPage() {
                   toggleCategory(category.name)
                 }
                 className={`
-                  flex
-                  h-[170px]
-                  flex-col
-                  items-center
-                  justify-center
-                  border
-                  transition-all
-                  duration-200
-                  ${
-                    selected.includes(
-                      category.name
-                    )
-                      ? "border-black bg-black text-white"
-                      : "border-neutral-400 bg-[#f4f3f1] hover:bg-black hover:text-white"
-                  }
-                `}
+                    flex
+                    h-[170px]
+                    flex-col
+                    items-center
+                    justify-center
+                    border
+                    border-neutral-400
+                    transition-all
+                    duration-200
+                ${
+                    selected.includes(category.name)
+                    ? "bg-black text-white border-black"
+                    : "bg-[#f7f2e7] text-black hover:bg-black hover:text-white hover:border-black"
+                }
+         `}
               >
                 <Icon className="mb-6 h-8 w-8" />
 
