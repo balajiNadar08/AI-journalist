@@ -10,22 +10,40 @@ export async function POST(req: NextRequest) {
     const {
       userId,
       categories,
+      personalised,
       mode,
     }: {
       userId: string;
       categories?: string[];
+      personalised?: boolean;
       mode?: "quick" | "brief";
     } = await req.json();
 
     if (!userId) {
-      return NextResponse.json({ error: "Missing userId" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing userId" },
+        { status: 400 }
+      );
     }
 
     let categoryNames: string[] = [];
 
-    if (categories && Array.isArray(categories) && categories.length > 0) {
+    // PERSONALISED NEWS
+    if (personalised) {
+      categoryNames = await getUserCategories(userId);
+    }
+
+    // CATEGORY PAGE SELECTIONS
+    else if (
+      categories &&
+      Array.isArray(categories) &&
+      categories.length > 0
+    ) {
       categoryNames = categories;
-    } else {
+    }
+
+    // FALLBACK TO USER INTERESTS
+    else {
       categoryNames = await getUserCategories(userId);
     }
 
@@ -37,7 +55,10 @@ export async function POST(req: NextRequest) {
     }
 
     const feedUrls = categoryNames.flatMap(
-      (name) => RSS_FEEDS[name as keyof typeof RSS_FEEDS] || [],
+      (name) =>
+        RSS_FEEDS[
+          name as keyof typeof RSS_FEEDS
+        ] || []
     );
 
     const feeds = await fetchFeeds(feedUrls);
@@ -53,25 +74,32 @@ export async function POST(req: NextRequest) {
 
     const generatedArticles = await generateBrief(
       articles,
-      mode === "quick" ? "quick" : "brief",
+      mode === "quick" ? "quick" : "brief"
     );
 
     return NextResponse.json({
       success: true,
       articles: generatedArticles,
+      categoriesUsed: categoryNames,
+      personalised,
       mode,
     });
   } catch (error: any) {
-    console.error("GENERATE BRIEF ERROR:", error);
+    console.error(
+      "GENERATE BRIEF ERROR:",
+      error
+    );
 
     return NextResponse.json(
       {
         success: false,
-        error: error.message || "Failed to generate brief",
+        error:
+          error.message ||
+          "Failed to generate brief",
       },
       {
         status: 500,
-      },
+      }
     );
   }
 }
