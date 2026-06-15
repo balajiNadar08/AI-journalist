@@ -53,6 +53,7 @@ export default function OnboardingPage() {
   const [selected, setSelected] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("User");
+  const [profileOpen, setProfileOpen] = useState(false);
 
   useEffect(() => {
     loadUser();
@@ -134,7 +135,82 @@ export default function OnboardingPage() {
   }
 
   return (
-    <main className={`${lato.className} min-h-screen bg-[#f7f2e7] text-black`}>
+    <main
+  className={`${lato.className} relative min-h-screen bg-[#f7f2e7] text-black`}
+>
+        <div className="absolute right-4 top-4 sm:right-10 sm:top-6">
+  <div className="relative">
+    <button
+      onClick={() => setProfileOpen(!profileOpen)}
+      className="
+        flex
+        items-center
+        gap-2
+        sm:gap-3
+        rounded-full
+        border
+        border-neutral-300
+        bg-white
+        px-3
+        sm:px-4
+        py-2
+        shadow-sm
+      "
+    >
+      <div
+        className="
+          flex
+          h-8
+          w-8
+          items-center
+          justify-center
+          rounded-full
+          bg-black
+          text-sm
+          text-white
+        "
+      >
+        {username.charAt(0).toUpperCase()}
+      </div>
+
+      <span className="hidden sm:inline text-sm font-medium">
+        {username}
+      </span>
+
+      <span
+        className={`text-xs transition-transform ${
+          profileOpen ? "rotate-180" : ""
+        }`}
+      >
+        ▼
+      </span>
+    </button>
+
+    {profileOpen && (
+      <div className="absolute right-0 mt-2 w-48 sm:w-56 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl z-50">
+        <button
+          onClick={() => {
+            setProfileOpen(false);
+            router.push("/dashboard");
+          }}
+          className="block w-full border-b border-neutral-200 px-4 py-3 text-left text-sm sm:text-base hover:bg-neutral-100"
+        >
+          Dashboard
+        </button>
+
+        <button
+          onClick={() => {
+            setProfileOpen(false);
+            router.push("/");
+          }}
+          className="block w-full px-4 py-3 text-left text-sm sm:text-base hover:bg-neutral-100"
+        >
+          Back to Home
+        </button>
+      </div>
+    )}
+  </div>
+</div>
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-20">
         <div className="mb-10 text-center sm:mb-16">
           <h2
