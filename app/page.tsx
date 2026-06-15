@@ -60,26 +60,20 @@ export default function Home() {
   const router = useRouter();
 
   async function handleTryNow() {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (user) {
-    router.push("/dashboard");
-  } else {
-    router.push("/auth/login");
+    if (user) {
+      router.push("/dashboard");
+    } else {
+      router.push("/auth/login");
+    }
   }
-}
-
-  
 
   return (
     <main className="bg-white text-black">
-      
-    
-  
-
-      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden flex flex-col items-center justify-center px-6">
+      <section className="relative min-h-[calc(100vh-80px)] overflow-hidden flex flex-col items-center justify-center px-4 sm:px-6">
         <video
           autoPlay
           loop
@@ -92,40 +86,41 @@ export default function Home() {
 
         <div className="absolute inset-0 bg-black/10" />
 
-        <div className="relative z-10 rounded-xl text-center max-w-4xl px-10 py-10">
+        <div className="relative z-10 rounded-xl text-center max-w-4xl px-4 sm:px-10 py-10">
           <BlurFade delay={0.25} inView>
             <h1
-              className={`text-6xl md:text-8xl font-semibold ${playfair.className} pb-10 text-white`}
+              className={`text-4xl sm:text-6xl md:text-8xl font-semibold ${playfair.className} pb-6 sm:pb-10 text-white`}
             >
               Understand The World Faster
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.5} inView>
-            <p className={`text-lg md:text-xl ${lato.className} text-white/90`}>
+            <p
+              className={`text-base sm:text-lg md:text-xl ${lato.className} text-white/90`}
+            >
               An AI-driven news experience built for speed, clarity and modern
               readers.
             </p>
           </BlurFade>
 
           <BlurFade delay={0.75}>
-              <button
-                onClick={handleTryNow}
-                className={`${lato.className} rounded-full mt-8 border border-white text-white px-10 py-3 text-md font-bold uppercase tracking-widest cursor-pointer hover:bg-white hover:text-black transition-all duration-300`}
-              >
-                  Try Now
-              </button>
-           
+            <button
+              onClick={handleTryNow}
+              className={`${lato.className} rounded-full mt-6 sm:mt-8 border border-white text-white px-6 sm:px-10 py-3 text-sm sm:text-md font-bold uppercase tracking-widest cursor-pointer hover:bg-white hover:text-black transition-all duration-300`}
+            >
+              Try Now
+            </button>
           </BlurFade>
         </div>
       </section>
 
-      <section className="w-full min-h-screen bg-[##F4F3F1] px-6 py-24 border">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className=" p-10 md:p-14 h-125 flex flex-col justify-center">
+      <section className="w-full min-h-screen bg-[#F4F3F1] px-4 sm:px-6 py-16 sm:py-24 border">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+          <div className="p-6 sm:p-10 md:p-14 flex flex-col justify-center">
             <BlurFade delay={0.25} inView>
               <h2
-                className={`${playfair.className} text-4xl md:text-6xl leading-tight`}
+                className={`${playfair.className} text-3xl sm:text-4xl md:text-6xl leading-tight`}
               >
                 Read Smarter,
                 <span className="block text-red-500">Not Longer.</span>
@@ -134,17 +129,17 @@ export default function Home() {
 
             <BlurFade delay={0.25 * 2} inView>
               <p
-                className={`${lato.className} mt-8 text-lg text-black/70 leading-relaxed`}
+                className={`${lato.className} mt-6 sm:mt-8 text-base sm:text-lg text-black/70 leading-relaxed`}
               >
-                Sandesa is a personalized AI-powered news platform that
-                filters unnecessary information and delivers only the stories
-                you care about.
+                Sandesa is a personalized AI-powered news platform that filters
+                unnecessary information and delivers only the stories you care
+                about.
               </p>
             </BlurFade>
 
             <BlurFade delay={0.25 * 3} inView>
               <p
-                className={`${lato.className} mt-5 text-black/50 leading-relaxed`}
+                className={`${lato.className} mt-4 sm:mt-5 text-sm sm:text-base text-black/50 leading-relaxed`}
               >
                 Choose categories like technology, business, sports, science,
                 etc. and receive concise summaries within seconds without
@@ -153,7 +148,7 @@ export default function Home() {
             </BlurFade>
           </div>
 
-          <div className="relative h-125 w-full flex items-center justify-center rounded-xl">
+          <div className="relative h-72 sm:h-96 md:h-125 w-full flex items-center justify-center rounded-xl overflow-hidden">
             <video
               autoPlay
               loop
@@ -167,18 +162,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-[#f4f3f1] px-6 py-28 border">
+      <section className="w-full bg-[#f4f3f1] px-4 sm:px-6 py-16 sm:py-28 border">
         <div className="max-w-7xl mx-auto">
           <BlurFade delay={0.25} inView>
-            <div className="text-center mb-24">
+            <div className="text-center mb-12 sm:mb-24">
               <h2
-                className={`text-5xl md:text-6xl ${playfair.className} font-bold`}
+                className={`text-3xl sm:text-5xl md:text-6xl ${playfair.className} font-bold`}
               >
                 News that respects your time
               </h2>
 
               <p
-                className={`max-w-2xl ${lato.className} mx-auto mt-6 text-black/60`}
+                className={`max-w-2xl ${lato.className} mx-auto mt-4 sm:mt-6 text-sm sm:text-base text-black/60`}
               >
                 Read less, understand more. Get concise summaries, personalized
                 coverage, and instant insights from the stories that matter.
@@ -186,9 +181,9 @@ export default function Home() {
             </div>
           </BlurFade>
 
-          <div className="grid md:grid-cols-[1fr_1.8fr] gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.8fr] gap-6 mb-6">
             <BlurFade delay={0.15} inView>
-              <div className="h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center">
+              <div className="relative h-60 sm:h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center overflow-hidden">
                 <video
                   autoPlay
                   loop
@@ -202,13 +197,15 @@ export default function Home() {
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
-              <div className="h-80 rounded-3xl border-2 border-black/90 p-10 md:p-14 flex flex-col justify-center">
-                <h3 className={`text-4xl font-bold ${playfair.className} mb-6`}>
+              <div className="min-h-60 sm:h-80 rounded-3xl border-2 border-black/90 p-6 sm:p-10 md:p-14 flex flex-col justify-center">
+                <h3
+                  className={`text-2xl sm:text-3xl md:text-4xl font-bold ${playfair.className} mb-4 sm:mb-6`}
+                >
                   Quicky Mode
                 </h3>
 
                 <p
-                  className={`text-black/60 ${lato.className} leading-relaxed max-w-xl`}
+                  className={`text-sm sm:text-base text-black/60 ${lato.className} leading-relaxed max-w-xl`}
                 >
                   Short bullet-point summaries for users in a hurry. Get the
                   facts without the fluff and stay informed in seconds.
@@ -217,15 +214,17 @@ export default function Home() {
             </BlurFade>
           </div>
 
-          <div className="grid md:grid-cols-[1.8fr_1fr] gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-[1.8fr_1fr] gap-6">
             <BlurFade delay={0.25} inView>
-              <div className="h-80 rounded-3xl border-2 border-black/90 p-10 md:p-14 flex flex-col justify-center">
-                <h3 className={`text-4xl font-bold ${playfair.className} mb-6`}>
+              <div className="min-h-60 sm:h-80 rounded-3xl border-2 border-black/90 p-6 sm:p-10 md:p-14 flex flex-col justify-center">
+                <h3
+                  className={`text-2xl sm:text-3xl md:text-4xl font-bold ${playfair.className} mb-4 sm:mb-6`}
+                >
                   Source Links
                 </h3>
 
                 <p
-                  className={`text-black/60 ${lato.className} leading-relaxed max-w-xl`}
+                  className={`text-sm sm:text-base text-black/60 ${lato.className} leading-relaxed max-w-xl`}
                 >
                   Direct links to original articles for full reading. Verify
                   facts, explore different viewpoints, and dive deeper whenever
@@ -235,7 +234,7 @@ export default function Home() {
             </BlurFade>
 
             <BlurFade delay={0.3} inView>
-              <div className="h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center">
+              <div className="relative h-60 sm:h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center overflow-hidden">
                 <video
                   autoPlay
                   loop
@@ -249,9 +248,9 @@ export default function Home() {
             </BlurFade>
           </div>
 
-          <div className="grid md:grid-cols-[1fr_1.8fr] gap-6 mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.8fr] gap-6 mt-6">
             <BlurFade delay={0.35} inView>
-              <div className="h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center">
+              <div className="relative h-60 sm:h-80 rounded-3xl border-2 border-black/10 bg-[#ffbf2f] flex items-center justify-center overflow-hidden">
                 <video
                   autoPlay
                   loop
@@ -265,13 +264,15 @@ export default function Home() {
             </BlurFade>
 
             <BlurFade delay={0.4} inView>
-              <div className="h-80 rounded-3xl border-2 border-black/90 p-10 md:p-14 flex flex-col justify-center">
-                <h3 className={`text-4xl font-bold ${playfair.className} mb-6`}>
+              <div className="min-h-60 sm:h-80 rounded-3xl border-2 border-black/90 p-6 sm:p-10 md:p-14 flex flex-col justify-center">
+                <h3
+                  className={`text-2xl sm:text-3xl md:text-4xl font-bold ${playfair.className} mb-4 sm:mb-6`}
+                >
                   Personalized Categories
                 </h3>
 
                 <p
-                  className={`text-black/60 ${lato.className} leading-relaxed max-w-xl`}
+                  className={`text-sm sm:text-base text-black/60 ${lato.className} leading-relaxed max-w-xl`}
                 >
                   Combine multiple categories in one click and create a news
                   feed tailored to your interests. Technology, business, sports,
@@ -283,16 +284,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full px-6 pt-24 pb-40 bg-[##F4F3F1] border border-black">
-        <div className="mx-auto mb-16 max-w-3xl text-center">
+      <section className="w-full px-4 sm:px-6 pt-16 sm:pt-24 pb-24 sm:pb-40 bg-white border border-black">
+        <div className="mx-auto mb-12 sm:mb-16 max-w-3xl text-center">
           <h2
-            className={`${playfair.className} text-4xl px-20 pb-6 font-semibold tracking-tight md:text-5xl`}
+            className={`${playfair.className} text-3xl px-2 sm:px-10 md:px-20 pb-4 sm:pb-6 font-semibold tracking-tight sm:text-4xl md:text-5xl`}
           >
             What Readers Think About Sandesa
           </h2>
 
           <p
-            className={`${lato.className} mt-4 text-lg text-muted-foreground md:text-xl`}
+            className={`${lato.className} mt-4 text-base text-muted-foreground sm:text-lg md:text-xl`}
           >
             Join readers who are transforming the way they consume news with
             faster insights, smarter summaries, and zero information overload.

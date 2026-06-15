@@ -2,7 +2,6 @@ export default function NotFoundPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#f5f4f2] px-6">
       <div className="text-center">
-        {/* 404 */}
         <h1
           className="text-[180px] leading-none text-black"
           style={{ fontFamily: "Georgia, serif" }}
@@ -10,7 +9,6 @@ export default function NotFoundPage() {
           404
         </h1>
 
-        {/* Title */}
         <h2
           className="mb-8 text-6xl text-black"
           style={{ fontFamily: "Georgia, serif" }}
@@ -18,7 +16,6 @@ export default function NotFoundPage() {
           Page Not Found
         </h2>
 
-        {/* Description */}
         <div className="space-y-4 text-lg text-neutral-600">
           <p>
             Oops! The page you're looking for doesn't exist
@@ -29,7 +26,6 @@ export default function NotFoundPage() {
           <p>Let's get you back on track.</p>
         </div>
 
-        {/* Button */}
         <div className="mt-10">
           <a
             href="/"

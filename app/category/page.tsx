@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
+import { Playfair_Display, Lato } from "next/font/google";
+
 import {
   Cpu,
   Landmark,
@@ -18,6 +20,18 @@ import {
   Plane,
   GraduationCap,
 } from "lucide-react";
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "900"],
+  style: ["normal", "italic"],
+});
+
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  style: ["normal", "italic"],
+});
 
 const categories = [
   { name: "TECHNOLOGY", icon: Cpu },
@@ -73,45 +87,32 @@ export default function CategorySelectionPage() {
   };
 
   const handleGenerateBrief = async () => {
-  if (selected.length === 0) {
-    alert("Please select at least one category.");
-    return;
-  }
+    if (selected.length === 0) {
+      alert("Please select at least one category.");
+      return;
+    }
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    sessionStorage.removeItem(
-      "usePersonalisedNews"
-    );
+    try {
+      sessionStorage.removeItem("usePersonalisedNews");
 
-    sessionStorage.setItem(
-      "selectedCategories",
-      JSON.stringify(selected)
-    );
+      sessionStorage.setItem("selectedCategories", JSON.stringify(selected));
 
-    sessionStorage.setItem(
-      "newsMode",
-      mode
-    );
+      sessionStorage.setItem("newsMode", mode);
 
-    router.push("/news");
-  } catch (error) {
-    console.error(error);
-    alert("Something went wrong.");
-  } finally {
-    setLoading(false);
-  }
-};
- const handlePersonalisedNews = async () => {
-  sessionStorage.removeItem(
-    "selectedCategories"
-  );
+      router.push("/news");
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handlePersonalisedNews = async () => {
+    sessionStorage.removeItem("selectedCategories");
 
-  sessionStorage.setItem(
-    "usePersonalisedNews",
-    "true"
-  );
+    sessionStorage.setItem("usePersonalisedNews", "true");
 
   sessionStorage.setItem(
     "newsMode",
@@ -122,19 +123,21 @@ export default function CategorySelectionPage() {
 };
   return (
     <main className="min-h-screen bg-[#f7f2e7] text-black">
-      <div className="absolute right-10 top-6">
+      <div className="absolute right-4 top-4 sm:right-10 sm:top-6">
         <div className="relative">
           <button
             onClick={() => setProfileOpen(!profileOpen)}
             className="
           flex
           items-center
-          gap-3
+          gap-2
+          sm:gap-3
           rounded-full
           border
           border-neutral-300
           bg-white
-          px-4
+          px-3
+          sm:px-4
           py-2
           shadow-sm
         "
@@ -155,7 +158,9 @@ export default function CategorySelectionPage() {
               {username.charAt(0).toUpperCase()}
             </div>
 
-            <span className="text-sm font-medium">{username}</span>
+            <span className="hidden sm:inline text-sm font-medium">
+              {username}
+            </span>
 
             <span
               className={`text-xs transition-transform ${
@@ -167,110 +172,119 @@ export default function CategorySelectionPage() {
           </button>
 
           {profileOpen && (
-  <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl z-50">
+            <div className="absolute right-0 mt-2 w-48 sm:w-56 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-xl z-50">
+              <button
+                onClick={() => {
+                  setProfileOpen(false);
+                  router.push("/onboarding");
+                }}
+                className="block w-full border-b border-neutral-200 px-4 py-3 text-left text-sm sm:text-base hover:bg-neutral-100"
+              >
+                Edit Personalised News
+              </button>
 
-    <button
-      onClick={() => {
-        setProfileOpen(false);
-        router.push("/onboarding");
-      }}
-      className="block w-full border-b border-neutral-200 px-4 py-3 text-left hover:bg-neutral-100"
-    >
-      Edit Personalised News
-    </button>
-
-    <button
-      onClick={() => {
-        setProfileOpen(false);
-        router.push("/");
-      }}
-      className="block w-full px-4 py-3 text-left hover:bg-neutral-100"
-    >
-      Back to Home
-    </button>
-
-  </div>
-)}
+              <button
+                onClick={() => {
+                  setProfileOpen(false);
+                  router.push("/");
+                }}
+                className="block w-full px-4 py-3 text-left text-sm sm:text-base hover:bg-neutral-100"
+              >
+                Back to Home
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      <section className="mx-auto max-w-7xl px-10 py-20">
-        <div className="mb-16 text-center">
+      <section className="mx-auto max-w-7xl px-4 sm:px-10 py-16 sm:py-20">
+        <div className="mb-10 sm:mb-16 text-center">
           <h2
-            className="mx-auto max-w-4xl text-7xl font-bold leading-[0.95]"
-            style={{ fontFamily: "Georgia, serif" }}
+            className="mx-auto max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] sm:leading-[0.95]"
+            style={{ fontFamily: playfair.className }}
           >
             What news defines your world?
           </h2>
 
-          <p className="mt-8 text-xl text-neutral-600">
+          <p className="mt-4 sm:mt-8 text-base sm:text-lg md:text-xl text-neutral-600">
             Select one or more categories to personalize your intelligence feed.
           </p>
 
-          <div className="mt-10 flex justify-center gap-6">
-  <button
-    onClick={() => setMode("quick")}
-    className={`
-      w-72
-      border
-      px-8
-      py-5
-      text-sm
-      tracking-[0.2em]
-      transition-all
-      ${
-        mode === "quick"
-          ? "border-black bg-black text-white"
-          : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
-      }
-    `}
-  >
-    QUICKY MODE
-  </button>
+          <div className="mt-8 sm:mt-10 flex flex-col items-center gap-5">
+            <div className="flex w-full flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+              <button
+                onClick={() => setMode("quick")}
+                className={`
+        w-full
+        sm:w-72
+        border
+        px-8
+        py-4
+        sm:py-5
+        text-sm
+        tracking-[0.2em]
+        cursor-pointer
+        transition-all
+        ${
+          mode === "quick"
+            ? "border-black bg-black text-white"
+            : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
+        }
+      `}
+              >
+                QUICKY MODE
+              </button>
 
-  <button
-    onClick={() => setMode("brief")}
-    className={`
-      w-72
-      border
-      px-8
-      py-5
-      text-sm
-      tracking-[0.2em]
-      transition-all
-      ${
-        mode === "brief"
-          ? "border-black bg-black text-white"
-          : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
-      }
-    `}
-  >
-    BRIEF MODE
-  </button>
+              <button
+                onClick={() => setMode("brief")}
+                className={`
+        w-full
+        sm:w-72
+        border
+        px-8
+        py-4
+        sm:py-5
+        text-sm
+        tracking-[0.2em]
+        cursor-pointer
+        transition-all
+        ${
+          mode === "brief"
+            ? "border-black bg-black text-white"
+            : "border-neutral-400 bg-white text-black hover:bg-black hover:text-white"
+        }
+      `}
+              >
+                BRIEF MODE
+              </button>
+            </div>
 
-  <button
-    onClick={handlePersonalisedNews}
-    className="
-      w-72
-      border
-      border-neutral-400
-      bg-white
+            <p className="text-xs uppercase tracking-[0.3em] pt-8 text-neutral-500">
+              Based on your interests
+            </p>
+
+            <button
+              onClick={handlePersonalisedNews}
+              className="
+      w-full
+      sm:w-72
+      border border-[#d90429] bg-[#d90429]
       px-8
-      py-5
+      py-4
+      sm:py-5
       text-sm
       tracking-[0.2em]
-      text-black
+      cursor-pointer
       transition-all
-      hover:bg-black
-      hover:text-white
+     text-white
     "
-  >
-    PERSONALISED NEWS
-  </button>
-</div>
+            >
+              PERSONALISED NEWS
+            </button>
+          </div>
         </div>
 
-        <div className="mx-auto grid max-w-5xl grid-cols-4 gap-6">
+        <div className="mx-auto grid max-w-5xl grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((category) => {
             const Icon = category.icon;
 
@@ -280,11 +294,14 @@ export default function CategorySelectionPage() {
                 onClick={() => toggleCategory(category.name)}
                 className={`
               flex
-              h-42.5
+              h-32
+              sm:h-36
+              md:h-42.5
               flex-col
               items-center
               justify-center
               border
+              cursor-pointer
               transition-all
               duration-200
               ${
@@ -294,9 +311,9 @@ export default function CategorySelectionPage() {
               }
             `}
               >
-                <Icon className="mb-6 h-8 w-8" />
+                <Icon className="mb-4 sm:mb-6 h-7 w-7 sm:h-8 sm:w-8" />
 
-                <span className="text-xs tracking-[0.25em]">
+                <span className="text-xs tracking-[0.25em] text-center px-2">
                   {category.name}
                 </span>
               </button>
@@ -304,17 +321,18 @@ export default function CategorySelectionPage() {
           })}
         </div>
 
-        <div className="mt-24 flex justify-center">
-          <div className="border border-neutral-400 bg-[#f4f3f1] p-6 shadow-[8px_8px_0px_#000]">
+        <div className="mt-16 sm:mt-24 flex justify-center">
+          <div className="w-full max-w-155 border border-neutral-400 bg-[#f4f3f1] p-4 sm:p-6 shadow-[8px_8px_0px_#000]">
             <button
               onClick={handleGenerateBrief}
               disabled={loading}
               className="
-            w-155
+            w-full
             border
             border-neutral-400
             bg-black
-            py-6
+            py-4
+            sm:py-6
             text-sm
             tracking-[0.2em]
             text-white
@@ -326,7 +344,7 @@ export default function CategorySelectionPage() {
               {loading ? "GENERATING..." : "GENERATE MY BRIEF →"}
             </button>
 
-            <p className="mt-6 text-center text-xs tracking-[0.18em] text-neutral-600">
+            <p className="mt-4 sm:mt-6 text-center text-xs tracking-[0.18em] text-neutral-600">
               Your selected categories will be used to generate a personalized
               news briefing.
             </p>
