@@ -26,7 +26,7 @@ export default function Footer() {
           <p
             className={`${playfair.className} text-2xl font-semibold tracking-wide text-black`}
           >
-            Sandesa
+            SANDESA
           </p>
 
           <p className="text-[15px] tracking-[0.2px] text-black/70 text-center sm:text-right">
