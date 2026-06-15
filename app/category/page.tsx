@@ -114,8 +114,13 @@ export default function CategorySelectionPage() {
 
     sessionStorage.setItem("usePersonalisedNews", "true");
 
-    router.push("/news");
-  };
+  sessionStorage.setItem(
+    "newsMode",
+    mode
+  );
+
+  router.push("/news");
+};
   return (
     <main className="min-h-screen bg-[#f7f2e7] text-black">
       <div className="absolute right-4 top-4 sm:right-10 sm:top-6">
