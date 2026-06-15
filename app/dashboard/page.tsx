@@ -146,8 +146,7 @@ export default function DashboardPage() {
 
       <section className="mx-auto w-full max-w-187.5 text-center">
         <h2
-          className="mb-4 text-4xl font-bold leading-[0.95] sm:mb-4 sm:text-5xl md:text-6xl lg:text-7xl"
-          style={{ fontFamily: playfair.className }}
+          className={`${playfair.className} mb-4 text-6xl font-bold leading-[0.9] md:text-7xl lg:text-8xl`}
         >
           {getGreeting()},
           <br />
@@ -155,8 +154,7 @@ export default function DashboardPage() {
         </h2>
 
         <h3
-          className="mx-auto mb-8 max-w-162.5 text-2xl font-semibold leading-[1.1] text-neutral-500 sm:mb-12 sm:text-3xl sm:leading-[1.05] md:text-4xl lg:text-5xl"
-          style={{ fontFamily: playfair.className }}
+        className={`${playfair.className} mx-auto mb-12 max-w-4xl text-4xl font-semibold leading-tight text-neutral-500 md:text-5xl lg:text-6xl`}
         >
           What would you like to
           <br />

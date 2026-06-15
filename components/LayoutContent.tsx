@@ -12,7 +12,8 @@ export default function LayoutContent({
   const pathname = usePathname();
 
   const hideNavbarFooter =
-    // pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/onboarding") ||
     pathname.startsWith("/category") ||
     pathname.startsWith("/brief") ||
     pathname.startsWith("/settings") ||
