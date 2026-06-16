@@ -1,47 +1,47 @@
 export function buildPrompt(articles: any[]) {
   const articleText = articles
-    .map(
-      (article, index) => `
-ID: ${index}
-TITLE: ${article.title}
-DESCRIPTION:
-${article.contentSnippet || article.content || ""}
-`
-    )
-    .join("\n\n")
-    .slice(0, 10000);
+    .map((article, index) => {
+      const snippet = (article.contentSnippet || article.content || "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 400);
 
-  return `
-You are an elite AI newspaper editor.
+      return `ID:${index}
+TITLE:${article.title}
+SNIPPET:${snippet}`;
+    })
+    .join("\n\n");
 
-Analyze the news articles below and create a concise, engaging newspaper-style headline and summary for each selected story.
+  return `You are an elite AI newspaper editor.
 
 Return ONLY valid JSON.
 
+Output format:
 [
   {
     "id": 0,
     "title": "Short headline",
-    "summary": "Interesting 2-3 sentence summary."
+    "summary": "A concise newspaper-style summary."
   }
 ]
 
 Rules:
-- Keep the exact ID of the article.
-- Select the 8 most important stories.
+- Select the 9 most important stories.
+- Out of 9 selected articles there must be atleast two related to India.
+- Keep the exact ID.
 - Create a NEW title; do not copy the original title.
-- Title must be short (4-8 words) and attention-grabbing.
+- Title must be 4-8 words.
 - Use a professional newspaper tone.
 - Summary must be 2-3 sentences.
-- Focus on the most important facts and why the story matters.
-- Make summaries engaging and easy to read.
+- Summary should be approximately 50-80 words.
+- Explain what happened and why it matters.
+- Be informative, concise, and engaging.
 - Do not use clickbait.
 - Do not generate URLs.
 - Return only valid JSON.
-- Return only the fields: id, title, summary.
+- Return only: id, title, summary.
 
 ARTICLES:
 
-${articleText}
-`;
+${articleText}`;
 }

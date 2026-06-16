@@ -256,39 +256,35 @@ export default function NewsPage() {
         setUsername(profile.username);
       }
       const usePersonalisedNews =
-  sessionStorage.getItem("usePersonalisedNews") === "true";
+        sessionStorage.getItem("usePersonalisedNews") === "true";
 
-const selectedCategories = JSON.parse(
-  sessionStorage.getItem("selectedCategories") || "[]"
-);
+      const selectedCategories = JSON.parse(
+        sessionStorage.getItem("selectedCategories") || "[]",
+      );
 
-const newsMode =
-  sessionStorage.getItem("newsMode") || "quick";
+      const newsMode = sessionStorage.getItem("newsMode") || "quick";
 
-const response = await fetch(
-  "/api/generate-brief",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-  userId: user.id,
-  categories: usePersonalisedNews
-    ? undefined
-    : selectedCategories,
-  personalised: usePersonalisedNews,
-  mode: newsMode,
-}),
-  }
-);
+      const response = await fetch("/api/generate-brief", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          categories: usePersonalisedNews ? undefined : selectedCategories,
+          personalised: usePersonalisedNews,
+          mode: newsMode,
+        }),
+      });
 
       const data = await response.json();
 
-      console.log("NEWS RESPONSE:", data);
+      // console.log("NEWS RESPONSE:", data);
 
       if (!response.ok) {
-        alert(data.error);
+        alert(
+          "The news is spreading fast! Our servers are handling a lot of requests right now. Please try again in a moment :)",
+        );
         return;
       }
 
