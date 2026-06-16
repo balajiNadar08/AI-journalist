@@ -1,40 +1,42 @@
 export function buildQuickyPrompt(articles: any[]) {
   const articleText = articles
-    .map(
-      (article, index) => `
-ID: ${index}
-TITLE: ${article.title}
-DESCRIPTION:
-${article.contentSnippet || article.content || ""}
-`
-    )
-    .join("\n\n")
-    .slice(0, 10000);
+    .map((article, index) => {
+      const snippet = (article.contentSnippet || "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 200);
 
-  return `
-You are a news editor.
+      return `ID:${index}
+TITLE:${article.title}
+SNIPPET:${snippet}`;
+    })
+    .join("\n\n");
+
+  return `You are a senior news editor.
 
 Return ONLY valid JSON.
 
+Output format:
 [
   {
     "id": 0,
-    "title": "AI Chip Race Accelerates",
-    "summary": "Nvidia launches next-generation AI chips."
+    "title": "Short headline",
+    "summary": "A concise but informative summary."
   }
 ]
 
 Rules:
-- Keep exact ID.
-- Select the 8 most important stories.
-- Generate a short title.
-- Summary must be ONE sentence.
-- Maximum 20 words.
+- Select the 12 most important stories.
+- Keep the exact ID.
+- Generate a short, engaging title.
+- Summary should be 1-2 sentences.
+- Summary should be 25-40 words.
+- Focus on the key development and why it matters.
+- No markdown.
 - No explanations.
 - Return only valid JSON.
 
 ARTICLES:
 
-${articleText}
-`;
+${articleText}`;
 }
