@@ -39,7 +39,7 @@ Sandesa is an AI-powered news platform that brings you the news you care about. 
 
 
 **API**
-  - Google Gemini 2.5 flash-lite
+  - llama-3.3-70b-versatile (GROQ)
 
 
 
